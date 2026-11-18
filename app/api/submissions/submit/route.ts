@@ -39,6 +39,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Tolak akun yang belum diaktifkan atau sudah dinonaktifkan.
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("account_status, must_change_password")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (profileError) {
+      console.error("Account status check error:", profileError);
+      return NextResponse.json(
+        { success: false, message: "Gagal memeriksa status akun." },
+        { status: 500 }
+      );
+    }
+
+    if (!profile || profile.account_status !== "active") {
+      return NextResponse.json(
+        { success: false, message: "Akun belum aktif atau telah dinonaktifkan." },
+        { status: 403 }
+      );
+    }
+
+    if (profile.must_change_password) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Ganti password terlebih dahulu sebelum mengumpulkan tugas.",
+          code: "PASSWORD_CHANGE_REQUIRED",
+        },
+        { status: 403 }
+      );
+    }
+
     let body: SubmitBody;
 
     try {
@@ -138,6 +171,13 @@ export async function POST(request: NextRequest) {
       console.error("Submission RPC error:", error.message);
 
       const message = error.message;
+
+      if (message.includes("Account is not active")) {
+        return NextResponse.json(
+          { success: false, message: "Akun belum aktif atau telah dinonaktifkan." },
+          { status: 403 }
+        );
+      }
 
       if (message.includes("Only the active group leader")) {
         return NextResponse.json(

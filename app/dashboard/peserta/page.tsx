@@ -3,6 +3,7 @@ import { connection } from "next/server";
 
 export const instant = false;
 import { createClient } from "@/lib/supabase/server";
+import PengumpulanTugas from "@/app/view/peserta/pengumpulan-tugas";
 
 export default async function PesertaDashboardPage() {
   await connection();
@@ -16,11 +17,17 @@ export default async function PesertaDashboardPage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("full_name, role")
+    .select("full_name, role, account_status, must_change_password")
     .eq("id", user.id)
     .maybeSingle();
 
-  if (!profile || profile.role !== "PESERTA") redirect("/");
+  if (!profile) redirect("/");
+
+  if (profile.account_status !== "active") redirect("/");
+
+  if (profile.must_change_password) redirect("/change-password");
+
+  if (profile.role !== "PESERTA") redirect("/");
 
   const { data: participantDivision } = await supabase
     .from("participant_divisions")
@@ -73,6 +80,11 @@ export default async function PesertaDashboardPage() {
 
   let group: { id: number; name: string } | null = null;
 
+  let groupMembers: {
+    user_id: string;
+    full_name: string;
+  }[] = [];
+
   if (membership) {
     const { data: groupData } = await supabase
       .from("groups")
@@ -82,6 +94,48 @@ export default async function PesertaDashboardPage() {
       .maybeSingle();
 
     group = groupData;
+
+    if (group) {
+      const { data: membersData, error: membersError } = await supabase
+        .from("group_members")
+        .select("user_id")
+        .eq("group_id", group.id)
+        .is("left_at", null);
+
+      if (membersError) {
+        console.error("Group members query error:", membersError);
+      } else {
+        const memberIds = [
+          ...new Set((membersData ?? []).map((member) => member.user_id)),
+        ];
+
+        if (memberIds.length > 0) {
+          const { data: profilesData, error: profilesError } = await supabase
+            .from("profiles")
+            .select("id, full_name")
+            .in("id", memberIds);
+
+          if (profilesError) {
+            console.error("Group member profiles query error:", profilesError);
+          } else {
+            const profileMap = new Map(
+              (profilesData ?? []).map((profile) => [
+                profile.id,
+                profile.full_name,
+              ])
+            );
+
+            groupMembers = memberIds.flatMap((userId) => {
+              const fullName = profileMap.get(userId);
+
+              return fullName
+                ? [{ user_id: userId, full_name: fullName }]
+                : [];
+            });
+          }
+        }
+      }
+    }
   }
 
   const { data: assignments } = await supabase
@@ -105,13 +159,6 @@ export default async function PesertaDashboardPage() {
 
     submissions = submissionData ?? [];
   }
-
-  const submissionMap = new Map(
-    submissions.map((submission) => [
-      submission.assignment_id,
-      submission,
-    ])
-  );
 
   const taskList = assignments ?? [];
 
@@ -164,77 +211,18 @@ export default async function PesertaDashboardPage() {
           </div>
         </section>
 
-        <section className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-          <div className="border-b border-slate-100 p-5">
-            <h2 className="text-lg font-bold text-slate-800">
-              Daftar Tugas
-            </h2>
-            <p className="mt-1 text-sm text-slate-500">
-              Pantau deadline dan status pengumpulan kelompokmu.
-            </p>
-          </div>
-
-          {taskList.length > 0 ? (
-            <div className="divide-y divide-slate-100">
-              {taskList.map((assignment) => {
-                const submission = submissionMap.get(assignment.id);
-                const isLate =
-                  new Date(assignment.deadline).getTime() < Date.now();
-
-                return (
-                  <article
-                    key={assignment.id}
-                    className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between"
-                  >
-                    <div>
-                      <h3 className="font-semibold text-slate-800">
-                        {assignment.title}
-                      </h3>
-                      <p className="mt-1 text-sm text-slate-500">
-                        {assignment.module}
-                      </p>
-                      <p className="mt-2 text-sm text-slate-600">
-                        Deadline:{" "}
-                        {new Date(assignment.deadline).toLocaleString(
-                          "id-ID",
-                          {
-                            dateStyle: "medium",
-                            timeStyle: "short",
-                            timeZone: "Asia/Jakarta",
-                          }
-                        )}
-                      </p>
-                    </div>
-
-                    <div className="shrink-0">
-                      {submission ? (
-                        <span className="rounded-full bg-green-100 px-3 py-1.5 text-xs font-semibold text-green-700">
-                          {submission.status === "late"
-                            ? "Terkumpul terlambat"
-                            : "Sudah dikumpulkan"}
-                        </span>
-                      ) : (
-                        <span
-                          className={`rounded-full px-3 py-1.5 text-xs font-semibold ${
-                            isLate
-                              ? "bg-red-100 text-red-700"
-                              : "bg-amber-100 text-amber-700"
-                          }`}
-                        >
-                          {isLate ? "Belum dikumpulkan" : "Belum mengumpulkan"}
-                        </span>
-                      )}
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          ) : (
-            <p className="p-8 text-center text-slate-500">
-              Belum ada tugas di divisi ini.
-            </p>
-          )}
-        </section>
+        <PengumpulanTugas
+          groupId={group?.id ?? null}
+          isLeader={membership?.is_leader === true}
+          groupMembers={groupMembers}
+          assignments={taskList.map((assignment) => ({
+            ...assignment,
+            module: assignment.module ?? null,
+            description: assignment.description ?? null,
+            deadline: assignment.deadline,
+          }))}
+          submissions={submissions}
+        />
       </div>
     </main>
   );

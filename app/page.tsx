@@ -29,6 +29,44 @@ export default function Home() {
       return;
     }
 
+    const {
+      data: { user },
+      error: userError,
+    } = await supabase.auth.getUser();
+
+    if (userError || !user) {
+      await supabase.auth.signOut();
+      setError("Gagal memverifikasi akun. Silakan coba lagi.");
+      setLoading(false);
+      return;
+    }
+
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("account_status, must_change_password")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (profileError || !profile) {
+      await supabase.auth.signOut();
+      setError("Gagal memverifikasi profil akun. Silakan coba lagi.");
+      setLoading(false);
+      return;
+    }
+
+    if (profile.account_status !== "active") {
+      await supabase.auth.signOut();
+      setError("Akun belum diaktifkan atau telah dinonaktifkan. Hubungi PIC.");
+      setLoading(false);
+      return;
+    }
+
+    if (profile.must_change_password) {
+      router.replace("/change-password");
+      router.refresh();
+      return;
+    }
+
     router.replace("/dashboard");
     router.refresh();
   }
