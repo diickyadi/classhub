@@ -125,15 +125,9 @@ export default function PesertaRiwayatView({
 
       <main className="ch-peserta-main">
         <div className="ch-peserta-content">
-          <PesertaHeader title="Riwayat Pengumpulan" />
+          <PesertaHeader title="Riwayat Pengumpulan" description="Lihat catatan pengumpulan tugas kelompok dan seluruh versi berkas yang pernah dikirim." />
 
-          <section className="ch-peserta-history-intro">
-            <h2>Riwayat Pengumpulan</h2>
-            <p>
-              Lihat catatan pengumpulan tugas kelompok dan seluruh versi
-              berkas yang pernah dikirim.
-            </p>
-          </section>
+
 
           <section
             className="ch-peserta-history-panel"

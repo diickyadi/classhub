@@ -736,3 +736,21 @@
 .ch-peserta-group-info-item strong {
   color: #344a83;
 }
+
+/* MOBILE: DASHBOARD STATISTICS SINGLE COLUMN */
+@media (max-width: 600px) {
+  .ch-peserta-statistics {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .ch-peserta-statisticCard {
+    width: 100%;
+    min-height: 110px;
+    box-sizing: border-box;
+  }
+
+  .ch-peserta-statistic-description {
+    font-size: 11px;
+  }
+}

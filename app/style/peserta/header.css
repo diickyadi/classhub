@@ -95,3 +95,20 @@
     overflow-wrap: anywhere;
   }
 }
+
+/* HEADER PAGE DESCRIPTION */
+.ch-peserta-heading-description {
+  margin: 7px 0 0;
+  color: #7783a4;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .ch-peserta-heading-description {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}

@@ -31,14 +31,9 @@ export default function PesertaKelompokView({
 
       <main className="ch-peserta-main">
         <div className="ch-peserta-content">
-          <PesertaHeader title="Kelompok Saya" />
+          <PesertaHeader title="Kelompok Saya" description="Lihat informasi kelompok, ketua, dan anggota yang terdaftar." />
 
-          <section className="ch-peserta-group-intro">
-            <h2>Kelompok Saya</h2>
-            <p>
-              Lihat informasi kelompok, ketua, dan anggota yang terdaftar.
-            </p>
-          </section>
+
 
           <section
             className="ch-peserta-group-panel"

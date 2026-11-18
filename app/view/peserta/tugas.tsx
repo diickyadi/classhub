@@ -8,15 +8,9 @@ export default function PesertaTugasView() {
 
       <main className="ch-peserta-main">
         <div className="ch-peserta-content">
-          <PesertaHeader title="Daftar Tugas" />
+          <PesertaHeader title="Daftar Tugas" description="Buka detail untuk mengumpulkan atau mengedit tugas yang sudah dikirim." />
 
-          <section className="ch-peserta-task-intro">
-            <h2>Daftar Tugas</h2>
-            <p>
-              Buka detail untuk mengumpulkan atau mengedit tugas yang sudah
-              dikirim.
-            </p>
-          </section>
+
 
           <section
             className="ch-peserta-task-panel"

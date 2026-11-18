@@ -147,15 +147,9 @@ export default function PesertaPengumpulanView({
 
       <main className="ch-peserta-main">
         <div className="ch-peserta-content">
-          <PesertaHeader title="Pengumpulan Tugas" />
+          <PesertaHeader title="Pengumpulan Tugas" description="Lihat pengumpulan kelompok dan informasi berkas tugas yang sudah dikirim." />
 
-          <section className="ch-peserta-submission-intro">
-            <h2>Pengumpulan Tugas</h2>
-            <p>
-              Lihat pengumpulan kelompok dan informasi berkas tugas yang sudah
-              dikirim.
-            </p>
-          </section>
+
 
           <section
             className="ch-peserta-submission-panel"

@@ -1,22 +1,3 @@
-.ch-peserta-group-intro {
-  margin-top: 28px;
-}
-
-.ch-peserta-group-intro h2 {
-  margin: 0;
-  color: #17213d;
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1.3;
-}
-
-.ch-peserta-group-intro p {
-  margin: 8px 0 0;
-  color: #7783a4;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
 .ch-peserta-group-panel {
   margin-top: 24px;
   overflow: hidden;
@@ -100,13 +81,7 @@
 }
 
 @media (max-width: 600px) {
-  .ch-peserta-group-intro {
-    margin-top: 22px;
-  }
 
-  .ch-peserta-group-intro h2 {
-    font-size: 21px;
-  }
 
   .ch-peserta-group-panel {
     margin-top: 18px;
@@ -430,4 +405,26 @@
   border-color: rgba(82, 109, 255, 0.20);
   background: linear-gradient(135deg, #e5eaff, #d9e1ff);
   color: #435ce8;
+}
+
+/* MOBILE: GROUP SUMMARY SINGLE COLUMN */
+@media (max-width: 600px) {
+  .ch-peserta-group-summary {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .ch-peserta-group-summary-item {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ch-peserta-group-member {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ch-peserta-group-member-info {
+    overflow-wrap: anywhere;
+  }
 }

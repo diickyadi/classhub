@@ -78,19 +78,12 @@ export default function PesertaDashboardView({
 
       <main className="ch-peserta-main">
         <div className="ch-peserta-content">
-          <PesertaHeader />
+          <PesertaHeader
+            title={`Selamat datang, ${welcomeName}`}
+            description="Berikut ringkasan aktivitas dan perkembangan tugas kelompokmu."
+          />
 
-          <section className="ch-peserta-welcome">
-            <span className="ch-peserta-welcome-label">
-              DASHBOARD PESERTA
-            </span>
 
-            <h2>Selamat datang, {welcomeName}</h2>
-
-            <p>
-              Berikut ringkasan aktivitas dan perkembangan tugas kelompokmu.
-            </p>
-          </section>
 
           <section
             aria-label="Informasi kelompok"

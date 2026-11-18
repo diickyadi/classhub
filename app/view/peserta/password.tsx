@@ -9,14 +9,9 @@ export default function PesertaPasswordView() {
 
       <main className="ch-peserta-main">
         <div className="ch-peserta-content">
-          <PesertaHeader title="Ganti Password" />
+          <PesertaHeader title="Ganti Password" description="Kelola keamanan password akun ClassHub kamu." />
 
-          <section className="ch-peserta-password-intro">
-            <h2>Pengaturan Password</h2>
-            <p>
-              Kelola keamanan password akun ClassHub kamu.
-            </p>
-          </section>
+
 
           <PasswordForm />
         </div>

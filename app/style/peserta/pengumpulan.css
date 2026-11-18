@@ -1,22 +1,3 @@
-.ch-peserta-submission-intro {
-  margin-top: 28px;
-}
-
-.ch-peserta-submission-intro h2 {
-  margin: 0;
-  color: #17213d;
-  font-size: 24px;
-  font-weight: 800;
-  line-height: 1.3;
-}
-
-.ch-peserta-submission-intro p {
-  margin: 8px 0 0;
-  color: #7783a4;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
 .ch-peserta-submission-panel {
   margin-top: 24px;
   overflow: hidden;
@@ -136,13 +117,7 @@
 }
 
 @media (max-width: 600px) {
-  .ch-peserta-submission-intro {
-    margin-top: 22px;
-  }
 
-  .ch-peserta-submission-intro h2 {
-    font-size: 21px;
-  }
 
   .ch-peserta-submission-panel {
     margin-top: 18px;
@@ -812,4 +787,83 @@
   color: #8490af;
   font-size: 13px;
   line-height: 1.6;
+}
+
+/* ========================================
+   MOBILE & TABLET: SUBMISSION TABLE CARDS
+======================================== */
+@media (max-width: 850px) {
+  .ch-peserta-submission-table-wrapper {
+    overflow-x: visible;
+    background: transparent;
+    padding: 14px;
+  }
+
+  .ch-peserta-submission-table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .ch-peserta-submission-table thead {
+    display: none;
+  }
+
+  .ch-peserta-submission-table tbody {
+    display: grid;
+    gap: 14px;
+  }
+
+  .ch-peserta-submission-table tbody tr {
+    display: block;
+    overflow: hidden;
+    border: 1px solid rgba(112, 130, 190, 0.18);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: 0 4px 14px rgba(83, 102, 190, 0.06);
+  }
+
+  .ch-peserta-submission-table tbody td,
+  .ch-peserta-submission-table tbody td:first-child,
+  .ch-peserta-submission-table tbody td:last-child {
+    display: block;
+    width: 100%;
+    padding: 13px 15px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(112, 130, 190, 0.12);
+    background: transparent;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .ch-peserta-submission-table tbody td::before {
+    display: block;
+    margin-bottom: 6px;
+    color: #8490af;
+    content: attr(data-label);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .ch-peserta-submission-table tbody td:last-child {
+    border-bottom: 0;
+  }
+
+  .ch-peserta-submission-table tbody tr:hover td {
+    background: transparent;
+  }
+
+  .ch-peserta-submission-table-file {
+    max-width: none;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .ch-peserta-submission-table .ch-peserta-submission-status {
+    white-space: normal;
+  }
 }
