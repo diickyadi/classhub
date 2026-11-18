@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import KelolaKelas from "@/app/view/pic/kelolakelas";
+import Pengumpulan from "@/app/view/pic/pengumpulan";
 
 export const instant = false;
 
@@ -14,11 +16,15 @@ export default async function PicDashboardPage() {
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("full_name, role")
+    .select("full_name, role, account_status, must_change_password")
     .eq("id", user.id)
     .maybeSingle();
 
   if (!profile) redirect("/");
+
+  if (profile.account_status !== "active") redirect("/");
+
+  if (profile.must_change_password) redirect("/change-password");
 
   if (profile.role !== "PIC") {
     redirect(
@@ -178,6 +184,10 @@ export default async function PicDashboardPage() {
             ))}
           </div>
         </section>
+
+        <KelolaKelas divisionName={division.name} />
+
+        <Pengumpulan />
 
         <section className="mt-10">
           <h2 className="mb-4 text-xl font-bold text-slate-900">
