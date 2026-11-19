@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import EditSubmissionModal from "@/app/assets/components/peserta/pengumpulan/edit-submission-modal";
-import "@/app/style/peserta/edit-submission-modal.css";
+import "@/app/style/peserta/popup-edit-pengumpulan.css";
 
 import PesertaSidebar from "@/app/assets/components/layout/peserta/sidebar";
 import PesertaHeader from "@/app/assets/components/layout/peserta/header";
