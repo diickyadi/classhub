@@ -1,0 +1,437 @@
+/* =====================================================
+   CLASSHUB - PESERTA DASHBOARD
+   Clean layout, responsive, lavender-blue theme
+   ===================================================== */
+
+/* MAIN LAYOUT */
+.ch-peserta-main {
+  box-sizing: border-box;
+  min-width: 0;
+  flex: 1 1 0%;
+  padding: 14px 26px 24px;
+}
+
+.ch-peserta-content {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  max-width: 1280px;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+
+
+/* SECTION SHARED STYLE */
+.ch-peserta-groupCard,
+.ch-peserta-taskCard {
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 6px 22px rgba(83, 102, 190, 0.05);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.ch-peserta-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.ch-peserta-section-eyebrow {
+  display: block;
+  color: #526dff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.ch-peserta-section-heading h3 {
+  margin: 5px 0 0;
+  color: #17213d;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.ch-peserta-section-heading p {
+  margin: 5px 0 0;
+  color: #8490af;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.ch-peserta-section-heading > a {
+  flex: 0 0 auto;
+  color: #526dff;
+  font-size: 12px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.ch-peserta-section-heading > a:hover {
+  color: #344fe0;
+  text-decoration: underline;
+}
+
+/* GROUP INFORMATION */
+.ch-peserta-groupCard {
+  padding: 17px 21px;
+}
+
+.ch-peserta-group-info {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-top: 14px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(112, 130, 190, 0.12);
+}
+
+.ch-peserta-group-info-item {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+  padding: 3px 16px;
+}
+
+.ch-peserta-group-info-item:first-child {
+  padding-left: 0;
+}
+
+.ch-peserta-group-info-item + .ch-peserta-group-info-item {
+  border-left: 1px solid rgba(112, 130, 190, 0.14);
+}
+
+.ch-peserta-group-info-item span {
+  color: #8490af;
+  font-size: 11px;
+}
+
+.ch-peserta-group-info-item strong {
+  color: #344a83;
+  font-size: 13px;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+
+/* STATISTICS */
+.ch-peserta-statistics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.ch-peserta-statisticCard {
+  box-sizing: border-box;
+  display: flex;
+  min-width: 0;
+  min-height: 104px;
+  flex-direction: column;
+  padding: 15px 17px;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.64);
+  box-shadow: 0 5px 18px rgba(83, 102, 190, 0.045);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.ch-peserta-statistic-label {
+  color: #7783a4;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.ch-peserta-statistic-value {
+  margin-top: 7px;
+  color: #26365f;
+  font-size: 26px;
+  font-weight: 850;
+  line-height: 1.1;
+}
+
+.ch-peserta-statistic-description {
+  margin-top: auto;
+  padding-top: 6px;
+  color: #929cb5;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* TASK LIST */
+.ch-peserta-taskCard {
+  padding: 18px 21px;
+}
+
+.ch-peserta-dashboard-task-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 13px;
+}
+
+.ch-peserta-dashboard-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 13px 2px;
+  border-top: 1px solid rgba(112, 130, 190, 0.12);
+}
+
+.ch-peserta-dashboard-task-info {
+  min-width: 0;
+}
+
+.ch-peserta-dashboard-task-info > span {
+  color: #7184e8;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.ch-peserta-dashboard-task-info h4 {
+  margin: 5px 0 0;
+  color: #35415f;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.ch-peserta-dashboard-task-info p {
+  margin: 5px 0 0;
+  color: #8490af;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.ch-peserta-dashboard-task-status {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 750;
+  text-align: center;
+}
+
+.ch-peserta-dashboard-task-status.is-submitted {
+  border-color: rgba(35, 163, 117, 0.16);
+  background: rgba(35, 163, 117, 0.09);
+  color: #218b68;
+}
+
+.ch-peserta-dashboard-task-status.is-pending {
+  border-color: rgba(218, 145, 58, 0.18);
+  background: rgba(255, 177, 79, 0.12);
+  color: #b87824;
+}
+
+/* EMPTY STATE */
+.ch-peserta-dashboard-empty {
+  margin-top: 14px;
+  padding: 18px;
+  border: 1px dashed rgba(112, 130, 190, 0.24);
+  border-radius: 13px;
+  background: rgba(247, 248, 255, 0.62);
+}
+
+.ch-peserta-dashboard-empty strong {
+  color: #35415f;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.ch-peserta-dashboard-empty p {
+  margin: 6px 0 0;
+  color: #8490af;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ERROR STATE */
+.ch-peserta-dashboard-error {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(211, 79, 91, 0.16);
+  border-radius: 11px;
+  background: rgba(255, 240, 241, 0.8);
+  color: #bd4c57;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* QUICK LINKS */
+.ch-peserta-dashboard-quick-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.ch-peserta-dashboard-quick-links a {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px 17px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.42);
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.ch-peserta-dashboard-quick-links a:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 5px 15px rgba(83, 102, 190, 0.05);
+}
+
+.ch-peserta-dashboard-quick-links a span {
+  color: #7184e8;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.ch-peserta-dashboard-quick-links a strong {
+  color: #35415f;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+/* TABLET */
+@media (max-width: 1100px) {
+  .ch-peserta-main {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .ch-peserta-statistics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* SMALL TABLET */
+@media (max-width: 850px) {
+  .ch-peserta-main {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .ch-peserta-content {
+    gap: 12px;
+  }
+
+  .ch-peserta-group-info {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .ch-peserta-group-info-item,
+  .ch-peserta-group-info-item:first-child {
+    padding: 5px 0;
+  }
+
+  .ch-peserta-group-info-item + .ch-peserta-group-info-item {
+    border-left: 0;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .ch-peserta-dashboard {
+    flex-direction: column;
+  }
+
+  .ch-peserta-main {
+    width: 100%;
+    flex: 1 1 auto;
+    padding: 18px 14px 26px;
+  }
+
+  .ch-peserta-content {
+    gap: 12px;
+  }
+
+
+
+  .ch-peserta-groupCard,
+  .ch-peserta-taskCard {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .ch-peserta-section-heading {
+    gap: 10px;
+  }
+
+  .ch-peserta-section-heading h3 {
+    font-size: 15px;
+  }
+
+  .ch-peserta-section-heading > a {
+    font-size: 11px;
+  }
+
+  .ch-peserta-group-info {
+    margin-top: 11px;
+    padding-top: 9px;
+  }
+
+  .ch-peserta-statistics {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 9px;
+  }
+
+  .ch-peserta-statisticCard {
+    width: 100%;
+    min-height: 96px;
+    padding: 13px 14px;
+    border-radius: 14px;
+  }
+
+  .ch-peserta-statistic-label {
+    font-size: 11px;
+  }
+
+  .ch-peserta-statistic-value {
+    margin-top: 5px;
+    font-size: 23px;
+  }
+
+  .ch-peserta-statistic-description {
+    padding-top: 5px;
+    font-size: 11px;
+  }
+
+  .ch-peserta-dashboard-task {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 11px;
+  }
+
+  .ch-peserta-dashboard-task-status {
+    align-self: flex-start;
+  }
+
+  .ch-peserta-dashboard-quick-links {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .ch-peserta-dashboard-quick-links a {
+    padding: 12px 14px;
+  }
+}

@@ -192,6 +192,7 @@ export async function POST(request: Request) {
 
     if (uploadError || !signedUpload) {
       console.error("Signed upload URL error:", uploadError);
+
       return NextResponse.json(
         { success: false, message: "Gagal membuat URL upload." },
         { status: 500 }
