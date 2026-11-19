@@ -22,7 +22,7 @@ export default function IdleTimeout() {
         sessionActiveRef.current &&
         !logoutInProgressRef.current
       ) {
-        lastActivityRef.current = Date.now();
+        lastActivityRef.current = performance.now();
       }
     }
 
@@ -39,7 +39,7 @@ export default function IdleTimeout() {
           event === "SIGNED_IN" ||
           event === "INITIAL_SESSION")
       ) {
-        lastActivityRef.current = Date.now();
+        lastActivityRef.current = performance.now();
       }
 
       if (!session) {
@@ -70,7 +70,7 @@ export default function IdleTimeout() {
         return;
       }
 
-      const idleDuration = Date.now() - lastActivityRef.current;
+      const idleDuration = performance.now() - lastActivityRef.current;
 
       if (idleDuration < IDLE_TIMEOUT_MS) {
         return;
@@ -85,7 +85,7 @@ export default function IdleTimeout() {
           console.error("Logout otomatis gagal:", error.message);
 
           logoutInProgressRef.current = false;
-          lastActivityRef.current = Date.now();
+          lastActivityRef.current = performance.now();
 
           return;
         }
@@ -101,7 +101,7 @@ export default function IdleTimeout() {
         );
 
         logoutInProgressRef.current = false;
-        lastActivityRef.current = Date.now();
+        lastActivityRef.current = performance.now();
       }
     }, CHECK_INTERVAL_MS);
 

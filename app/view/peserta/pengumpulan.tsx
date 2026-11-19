@@ -87,7 +87,7 @@ export default function PesertaPengumpulanView({
     if (selectedSubmissionId === undefined) return;
 
     const updateCurrentTime = () => {
-      setCurrentTime(Date.now());
+      setCurrentTime((performance.timeOrigin + performance.now()));
     };
 
     const interval = window.setInterval(updateCurrentTime, 30_000);
@@ -244,7 +244,7 @@ export default function PesertaPengumpulanView({
                             type="button"
                             className="ch-peserta-submission-detail-button"
                             onClick={() => {
-                              setCurrentTime(Date.now());
+                              setCurrentTime((performance.timeOrigin + performance.now()));
                               setSelectedSubmission(submission);
                             }}
                           >
