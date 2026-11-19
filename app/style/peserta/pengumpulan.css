@@ -1,0 +1,869 @@
+.ch-peserta-submission-panel {
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow:
+    0 16px 40px rgba(64, 85, 223, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.ch-peserta-submission-panel-header {
+  display: flex;
+  min-height: 82px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 26px;
+  border-bottom: 1px solid rgba(112, 130, 190, 0.18);
+  background: linear-gradient(
+    115deg,
+    rgba(239, 242, 255, 0.96),
+    rgba(246, 244, 255, 0.88)
+  );
+}
+
+.ch-peserta-submission-panel-header h3 {
+  margin: 0;
+  color: #17213d;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.ch-peserta-submission-panel-header p {
+  margin: 5px 0 0;
+  color: #8490af;
+  font-size: 12px;
+}
+
+.ch-peserta-submission-count {
+  padding: 6px 11px;
+  border: 1px solid rgba(82, 109, 255, 0.12);
+  border-radius: 20px;
+  background: rgba(82, 109, 255, 0.08);
+  color: #526dff;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ch-peserta-submission-empty {
+  display: flex;
+  min-height: 270px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 24px;
+  text-align: center;
+}
+
+.ch-peserta-submission-empty-icon {
+  display: grid;
+  width: 66px;
+  height: 66px;
+  place-items: center;
+  margin-bottom: 17px;
+  border: 1px solid rgba(82, 109, 255, 0.12);
+  border-radius: 20px;
+  background: rgba(82, 109, 255, 0.08);
+  color: #7184e8;
+}
+
+.ch-peserta-submission-empty h3 {
+  margin: 0;
+  color: #263354;
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.ch-peserta-submission-empty p {
+  max-width: 390px;
+  margin: 9px 0 0;
+  color: #7783a4;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.ch-peserta-submission-information {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-top: 20px;
+  padding: 18px 20px;
+  border: 1px solid rgba(82, 109, 255, 0.12);
+  border-radius: 15px;
+  background: rgba(237, 240, 255, 0.58);
+}
+
+.ch-peserta-submission-information-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(82, 109, 255, 0.1);
+  color: #526dff;
+}
+
+.ch-peserta-submission-information p {
+  margin: 0;
+  color: #65718f;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+
+
+  .ch-peserta-submission-panel {
+    margin-top: 18px;
+    border-radius: 15px;
+  }
+
+  .ch-peserta-submission-panel-header {
+    min-height: 68px;
+    padding: 15px 17px;
+  }
+
+  .ch-peserta-submission-panel-header h3 {
+    font-size: 15px;
+  }
+
+  .ch-peserta-submission-empty {
+    min-height: 235px;
+    padding: 28px 18px;
+  }
+
+  .ch-peserta-submission-information {
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .ch-peserta-submission-information p {
+    font-size: 12px;
+  }
+}
+
+/* Submission list */
+
+.ch-peserta-submission-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ch-peserta-submission-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 17px;
+  padding: 22px 24px;
+  border-bottom: 1px solid rgba(120, 137, 190, 0.12);
+}
+
+.ch-peserta-submission-item:last-child {
+  border-bottom: none;
+}
+
+.ch-peserta-submission-file-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  place-items: center;
+  border: 1px solid rgba(82, 109, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(82, 109, 255, 0.08);
+  color: #526dff;
+}
+
+.ch-peserta-submission-item-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.ch-peserta-submission-item-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.ch-peserta-submission-item-heading h4 {
+  margin: 0;
+  color: #263354;
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+.ch-peserta-submission-item-heading > div > span {
+  display: block;
+  margin-top: 4px;
+  color: #8490af;
+  font-size: 12px;
+}
+
+.ch-peserta-submission-status {
+  flex: 0 0 auto;
+  padding: 6px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ch-peserta-submission-status.is-submitted {
+  background: rgba(35, 163, 117, 0.1);
+  color: #218b68;
+}
+
+.ch-peserta-submission-status.is-late {
+  background: rgba(231, 151, 54, 0.12);
+  color: #b77925;
+}
+
+.ch-peserta-submission-file-name {
+  overflow-wrap: anywhere;
+  margin: 13px 0 0;
+  color: #526dff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ch-peserta-submission-item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 10px;
+  color: #8490af;
+  font-size: 11px;
+}
+
+.ch-peserta-submission-updated {
+  margin: 8px 0 0;
+  color: #8490af;
+  font-size: 11px;
+}
+
+.ch-peserta-submission-error {
+  display: flex;
+  min-height: 220px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 30px 24px;
+  color: #c45b65;
+  text-align: center;
+}
+
+.ch-peserta-submission-error p {
+  max-width: 400px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .ch-peserta-submission-item {
+    gap: 12px;
+    padding: 18px 16px;
+  }
+
+  .ch-peserta-submission-file-icon {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .ch-peserta-submission-item-heading {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .ch-peserta-submission-item-heading h4 {
+    font-size: 14px;
+  }
+
+  .ch-peserta-submission-item-meta {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+/* ========================================
+   TABEL PENGUMPULAN
+======================================== */
+
+.ch-peserta-submission-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.42);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(82, 109, 255, 0.3) transparent;
+}
+
+.ch-peserta-submission-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: auto;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.ch-peserta-submission-table th {
+  padding: 18px 16px;
+  background: rgba(231, 235, 255, 0.94);
+  border-bottom: 1px solid rgba(112, 130, 190, 0.24);
+  border-right: 1px solid rgba(112, 130, 190, 0.10);
+  color: #59698f;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.025em;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ch-peserta-submission-table th:last-child {
+  border-right: none;
+}
+
+.ch-peserta-submission-table th:first-child,
+.ch-peserta-submission-table td:first-child {
+  padding-left: 24px;
+}
+
+.ch-peserta-submission-table th:last-child,
+.ch-peserta-submission-table td:last-child {
+  padding-right: 24px;
+}
+
+.ch-peserta-submission-table td {
+  padding: 21px 16px;
+  border-bottom: 1px solid rgba(112, 130, 190, 0.17);
+  border-right: 1px solid rgba(112, 130, 190, 0.08);
+  color: #35415f;
+  font-size: 13px;
+  line-height: 1.55;
+  vertical-align: middle;
+  background: rgba(255, 255, 255, 0.34);
+  transition: background 0.2s ease;
+}
+
+.ch-peserta-submission-table td:last-child {
+  border-right: none;
+}
+
+.ch-peserta-submission-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ch-peserta-submission-table tbody tr:hover td {
+  background: rgba(237, 240, 255, 0.66);
+}
+
+.ch-peserta-submission-task-name,
+.ch-peserta-submission-module,
+.ch-peserta-submission-table-file,
+.ch-peserta-submission-table-size {
+  display: block;
+}
+
+.ch-peserta-submission-task-name {
+  color: #263354;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.ch-peserta-submission-module {
+  margin-top: 4px;
+  color: #8490af;
+  font-size: 12px;
+}
+
+.ch-peserta-submission-table-file {
+  max-width: 260px;
+  overflow-wrap: anywhere;
+  color: #526dff;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.ch-peserta-submission-table-size {
+  margin-top: 5px;
+  color: #8490af;
+  font-size: 11px;
+}
+
+.ch-peserta-submission-table .ch-peserta-submission-status {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.ch-peserta-submission-detail-button {
+  display: inline-flex;
+  min-width: 84px;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 18px;
+  border: 1px solid rgba(112, 130, 190, 0.2);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 4px 12px rgba(64, 85, 223, 0.07);
+  color: #526286;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ch-peserta-submission-detail-button:hover {
+  background: #526dff;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.ch-peserta-submission-detail-button:focus-visible {
+  outline: 3px solid rgba(82, 109, 255, 0.3);
+  outline-offset: 3px;
+}
+
+/* ========================================
+   MODAL DETAIL PENGUMPULAN
+======================================== */
+
+.ch-peserta-submission-modal-backdrop {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 24px;
+  background: rgba(25, 35, 70, 0.38);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.ch-peserta-submission-modal {
+  width: 100%;
+  max-width: 620px;
+  max-height: min(85vh, 760px);
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 24px 70px rgba(35, 49, 105, 0.2);
+}
+
+.ch-peserta-submission-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 25px 27px;
+  border-bottom: 1px solid rgba(120, 137, 190, 0.14);
+}
+
+.ch-peserta-submission-modal-header > div > span {
+  color: #7184e8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ch-peserta-submission-modal-header h2 {
+  margin: 8px 0 0;
+  color: #263354;
+  font-size: 20px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+
+.ch-peserta-submission-modal-close {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  border: none;
+  border-radius: 11px;
+  background: #f0f2ff;
+  color: #64739b;
+  cursor: pointer;
+}
+
+.ch-peserta-submission-modal-close:hover {
+  background: #e4e8ff;
+  color: #526dff;
+}
+
+.ch-peserta-submission-modal-body {
+  padding: 25px 27px;
+}
+
+.ch-peserta-submission-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+
+.ch-peserta-submission-detail-grid > div {
+  min-width: 0;
+}
+
+.ch-peserta-submission-detail-grid > div > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #8490af;
+  font-size: 12px;
+}
+
+.ch-peserta-submission-detail-grid strong {
+  display: block;
+  overflow-wrap: anywhere;
+  color: #35415f;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.6;
+}
+
+.ch-peserta-submission-detail-grid .ch-peserta-submission-detail-filename {
+  color: #526dff;
+}
+
+.ch-peserta-submission-contributors {
+  margin-top: 27px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(120, 137, 190, 0.14);
+}
+
+.ch-peserta-submission-contributors-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.ch-peserta-submission-contributors-heading h3 {
+  margin: 0;
+  color: #263354;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.ch-peserta-submission-contributors-heading > span {
+  color: #8490af;
+  font-size: 12px;
+}
+
+.ch-peserta-submission-contributors ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ch-peserta-submission-contributors li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 13px;
+  border: 1px solid rgba(120, 137, 190, 0.1);
+  border-radius: 12px;
+  background: rgba(242, 244, 255, 0.55);
+  color: #35415f;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ch-peserta-submission-contributor-avatar {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(82, 109, 255, 0.12);
+  color: #526dff;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.ch-peserta-submission-no-contributors {
+  margin: 0;
+  color: #8490af;
+  font-size: 13px;
+}
+
+.ch-peserta-submission-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px 27px;
+  border-top: 1px solid rgba(120, 137, 190, 0.14);
+}
+
+.ch-peserta-submission-modal-footer button {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease, transform 0.2s ease;
+}
+
+.ch-peserta-submission-modal-footer button:first-child {
+  background: #526dff;
+  color: #ffffff;
+}
+
+.ch-peserta-submission-modal-footer button:first-child:hover {
+  background: #405be8;
+  transform: translateY(-1px);
+}
+
+.ch-peserta-submission-modal-footer button:last-child {
+  border-color: #e1e6f3;
+  background: #ffffff;
+  color: #64739b;
+}
+
+.ch-peserta-submission-modal-footer button:last-child:hover {
+  border-color: #cbd3e8;
+  background: #f5f6fc;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 600px) {
+  .ch-peserta-submission-table {
+    min-width: 720px;
+  }
+
+  .ch-peserta-submission-table th {
+    padding: 14px 12px;
+    font-size: 12px;
+  }
+
+  .ch-peserta-submission-table td {
+    padding: 16px 12px;
+    font-size: 12px;
+  }
+
+  .ch-peserta-submission-table th:first-child,
+  .ch-peserta-submission-table td:first-child {
+    padding-left: 16px;
+  }
+
+  .ch-peserta-submission-table th:last-child,
+  .ch-peserta-submission-table td:last-child {
+    padding-right: 16px;
+  }
+
+  .ch-peserta-submission-modal-backdrop {
+    align-items: flex-start;
+    padding: 14px;
+  }
+
+  .ch-peserta-submission-modal {
+    max-height: calc(100dvh - 28px);
+    border-radius: 16px;
+  }
+
+  .ch-peserta-submission-modal-header,
+  .ch-peserta-submission-modal-body {
+    padding: 20px;
+  }
+
+  .ch-peserta-submission-modal-header h2 {
+    font-size: 17px;
+  }
+
+  .ch-peserta-submission-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ch-peserta-submission-modal-footer {
+    padding: 15px 20px;
+  }
+}
+
+/* Riwayat revisi pada modal detail */
+
+.ch-peserta-submission-revisions {
+  margin-top: 27px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(120, 137, 190, 0.14);
+}
+
+.ch-peserta-submission-revisions h3 {
+  margin: 0 0 15px;
+  color: #263354;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.ch-peserta-submission-revisions ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ch-peserta-submission-revisions li {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid rgba(120, 137, 190, 0.1);
+}
+
+.ch-peserta-submission-revision-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border: 1px solid rgba(82, 109, 255, 0.12);
+  border-radius: 12px;
+  background: #f2f4ff;
+  color: #526dff;
+}
+
+.ch-peserta-submission-revision-icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.ch-peserta-submission-revisions li strong,
+.ch-peserta-submission-revisions li span {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.ch-peserta-submission-revisions li strong {
+  color: #263354;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ch-peserta-submission-revisions li span {
+  margin-top: 4px;
+  color: #8490af;
+  font-size: 12px;
+}
+
+.ch-peserta-submission-no-revisions {
+  margin: 0;
+  color: #8490af;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   MOBILE & TABLET: SUBMISSION TABLE CARDS
+======================================== */
+@media (max-width: 850px) {
+  .ch-peserta-submission-table-wrapper {
+    overflow-x: visible;
+    background: transparent;
+    padding: 14px;
+  }
+
+  .ch-peserta-submission-table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .ch-peserta-submission-table thead {
+    display: none;
+  }
+
+  .ch-peserta-submission-table tbody {
+    display: grid;
+    gap: 14px;
+  }
+
+  .ch-peserta-submission-table tbody tr {
+    display: block;
+    overflow: hidden;
+    border: 1px solid rgba(112, 130, 190, 0.18);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: 0 4px 14px rgba(83, 102, 190, 0.06);
+  }
+
+  .ch-peserta-submission-table tbody td,
+  .ch-peserta-submission-table tbody td:first-child,
+  .ch-peserta-submission-table tbody td:last-child {
+    display: block;
+    width: 100%;
+    padding: 13px 15px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(112, 130, 190, 0.12);
+    background: transparent;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .ch-peserta-submission-table tbody td::before {
+    display: block;
+    margin-bottom: 6px;
+    color: #8490af;
+    content: attr(data-label);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .ch-peserta-submission-table tbody td:last-child {
+    border-bottom: 0;
+  }
+
+  .ch-peserta-submission-table tbody tr:hover td {
+    background: transparent;
+  }
+
+  .ch-peserta-submission-table-file {
+    max-width: none;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .ch-peserta-submission-table .ch-peserta-submission-status {
+    white-space: normal;
+  }
+}

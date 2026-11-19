@@ -1,0 +1,653 @@
+.ch-peserta-history-panel {
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow:
+    0 16px 40px rgba(64, 85, 223, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+}
+
+.ch-peserta-history-panel-header {
+  display: flex;
+  min-height: 82px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 26px;
+  border-bottom: 1px solid rgba(112, 130, 190, 0.18);
+  background: linear-gradient(
+    115deg,
+    rgba(239, 242, 255, 0.96),
+    rgba(246, 244, 255, 0.88)
+  );
+}
+
+.ch-peserta-history-panel-header h3 {
+  margin: 0;
+  color: #17213d;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.ch-peserta-history-panel-header p {
+  margin: 5px 0 0;
+  color: #8490af;
+  font-size: 12px;
+}
+
+.ch-peserta-history-count {
+  padding: 6px 11px;
+  border: 1px solid rgba(82, 109, 255, 0.12);
+  border-radius: 20px;
+  background: rgba(82, 109, 255, 0.08);
+  color: #526dff;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.ch-peserta-history-empty {
+  display: flex;
+  min-height: 270px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 24px;
+  text-align: center;
+}
+
+.ch-peserta-history-empty-icon {
+  display: grid;
+  width: 66px;
+  height: 66px;
+  place-items: center;
+  margin-bottom: 17px;
+  border: 1px solid rgba(82, 109, 255, 0.12);
+  border-radius: 20px;
+  background: rgba(82, 109, 255, 0.08);
+  color: #7184e8;
+}
+
+.ch-peserta-history-empty h3 {
+  margin: 0;
+  color: #263354;
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.ch-peserta-history-empty p {
+  max-width: 390px;
+  margin: 9px 0 0;
+  color: #7783a4;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+
+
+  .ch-peserta-history-panel {
+    margin-top: 18px;
+    border-radius: 15px;
+  }
+
+  .ch-peserta-history-panel-header {
+    min-height: 68px;
+    padding: 15px 17px;
+  }
+
+  .ch-peserta-history-panel-header h3 {
+    font-size: 15px;
+  }
+
+  .ch-peserta-history-empty {
+    min-height: 235px;
+    padding: 28px 18px;
+  }
+}
+
+/* ========================================
+   HISTORY TABLE - GLASSMORPHISM
+======================================== */
+
+.ch-peserta-history-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.42);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(82, 109, 255, 0.3) transparent;
+}
+
+.ch-peserta-history-table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.ch-peserta-history-table th {
+  padding: 18px 16px;
+  border-right: 1px solid rgba(112, 130, 190, 0.1);
+  border-bottom: 1px solid rgba(112, 130, 190, 0.24);
+  background: rgba(231, 235, 255, 0.94);
+  color: #59698f;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.025em;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ch-peserta-history-table th:last-child {
+  border-right: none;
+}
+
+.ch-peserta-history-table td {
+  padding: 19px 16px;
+  border-right: 1px solid rgba(112, 130, 190, 0.08);
+  border-bottom: 1px solid rgba(112, 130, 190, 0.17);
+  background: rgba(255, 255, 255, 0.34);
+  color: #596582;
+  font-size: 12px;
+  line-height: 1.6;
+  vertical-align: middle;
+  transition: background 0.2s ease;
+}
+
+.ch-peserta-history-table td:last-child {
+  border-right: none;
+}
+
+.ch-peserta-history-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ch-peserta-history-table tbody tr:hover td {
+  background: rgba(237, 240, 255, 0.66);
+}
+
+.ch-peserta-history-table td > strong,
+.ch-peserta-history-table td > span:not(.ch-peserta-history-status) {
+  display: block;
+}
+
+.ch-peserta-history-table td > strong {
+  color: #35415f;
+  font-size: 12px;
+  font-weight: 750;
+  overflow-wrap: anywhere;
+}
+
+.ch-peserta-history-table td > span:not(.ch-peserta-history-status) {
+  margin-top: 5px;
+  color: #8490af;
+  font-size: 11px;
+}
+
+.ch-peserta-history-file-name {
+  max-width: 210px;
+}
+
+.ch-peserta-history-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 11px;
+  border: 1px solid rgba(35, 163, 117, 0.16);
+  border-radius: 20px;
+  background: rgba(35, 163, 117, 0.09);
+  color: #218b68;
+  font-size: 11px;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.ch-peserta-history-status.is-late {
+  border-color: rgba(218, 145, 58, 0.2);
+  background: rgba(255, 177, 79, 0.12);
+  color: #b87824;
+}
+
+.ch-peserta-history-detail-button {
+  display: inline-flex;
+  min-width: 78px;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 15px;
+  border: 1px solid rgba(112, 130, 190, 0.2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 4px 12px rgba(64, 85, 223, 0.07);
+  color: #526286;
+  font-size: 11px;
+  font-weight: 750;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ch-peserta-history-detail-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(82, 109, 255, 0.35);
+  background: #f2f4ff;
+  color: #526dff;
+}
+
+.ch-peserta-history-error {
+  margin: 20px;
+  padding: 15px 17px;
+  border: 1px solid rgba(211, 79, 91, 0.16);
+  border-radius: 12px;
+  background: rgba(255, 240, 241, 0.8);
+  color: #bd4c57;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   HISTORY DETAIL MODAL
+======================================== */
+
+.ch-peserta-history-modal-backdrop {
+  position: fixed;
+  z-index: 1050;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding: 24px;
+  background: rgba(25, 35, 70, 0.42);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+
+.ch-peserta-history-modal {
+  width: 100%;
+  max-width: 680px;
+  max-height: 88vh;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 24px 70px rgba(35, 49, 105, 0.2);
+}
+
+.ch-peserta-history-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 25px 27px;
+  border-bottom: 1px solid rgba(120, 137, 190, 0.15);
+  background: linear-gradient(
+    115deg,
+    rgba(239, 242, 255, 0.96),
+    rgba(246, 244, 255, 0.88)
+  );
+}
+
+.ch-peserta-history-modal-header > div > span {
+  color: #7184e8;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.09em;
+}
+
+.ch-peserta-history-modal-header h2 {
+  margin: 8px 0 0;
+  color: #263354;
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+.ch-peserta-history-modal-header p {
+  margin: 6px 0 0;
+  color: #8490af;
+  font-size: 12px;
+}
+
+.ch-peserta-history-modal-header > button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  place-items: center;
+  border: 1px solid rgba(112, 130, 190, 0.14);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #64739b;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.ch-peserta-history-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  padding: 25px 27px;
+}
+
+.ch-peserta-history-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.ch-peserta-history-summary > div {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 7px;
+  padding: 15px;
+  border: 1px solid rgba(112, 130, 190, 0.13);
+  border-radius: 12px;
+  background: rgba(244, 246, 255, 0.7);
+}
+
+.ch-peserta-history-summary > div span {
+  color: #8490af;
+  font-size: 11px;
+}
+
+.ch-peserta-history-summary > div strong {
+  color: #35415f;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.ch-peserta-history-version-section,
+.ch-peserta-history-contributors {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.ch-peserta-history-version-section h3,
+.ch-peserta-history-contributors h3 {
+  margin: 0;
+  color: #263354;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.ch-peserta-history-version-item,
+.ch-peserta-history-version-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 15px;
+  border: 1px solid rgba(112, 130, 190, 0.14);
+  border-radius: 12px;
+  background: rgba(247, 248, 255, 0.78);
+}
+
+.ch-peserta-history-version-item > div,
+.ch-peserta-history-version-list li > div {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ch-peserta-history-version-item strong,
+.ch-peserta-history-version-list li strong {
+  color: #35415f;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.ch-peserta-history-version-item span,
+.ch-peserta-history-version-list li span {
+  color: #8490af;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.ch-peserta-history-version-item button,
+.ch-peserta-history-version-list li button {
+  flex: 0 0 auto;
+  padding: 9px 13px;
+  border: 1px solid rgba(82, 109, 255, 0.18);
+  border-radius: 9px;
+  background: rgba(82, 109, 255, 0.08);
+  color: #526dff;
+  font-size: 11px;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.ch-peserta-history-version-item button:hover,
+.ch-peserta-history-version-list li button:hover {
+  background: rgba(82, 109, 255, 0.15);
+}
+
+.ch-peserta-history-version-item button:disabled,
+.ch-peserta-history-version-list li button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ch-peserta-history-version-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ch-peserta-history-no-revisions,
+.ch-peserta-history-contributors > p {
+  margin: 0;
+  padding: 14px 15px;
+  border: 1px solid rgba(112, 130, 190, 0.12);
+  border-radius: 11px;
+  background: rgba(247, 248, 255, 0.7);
+  color: #8490af;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.ch-peserta-history-contributors ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ch-peserta-history-contributors li {
+  padding: 8px 12px;
+  border: 1px solid rgba(82, 109, 255, 0.12);
+  border-radius: 20px;
+  background: rgba(82, 109, 255, 0.07);
+  color: #526286;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.ch-peserta-history-download-error {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #fff0f0;
+  color: #bd4c57;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.ch-peserta-history-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 17px 27px;
+  border-top: 1px solid rgba(120, 137, 190, 0.14);
+}
+
+.ch-peserta-history-modal-footer button {
+  min-width: 90px;
+  min-height: 40px;
+  padding: 10px 18px;
+  border: 1px solid #e1e6f3;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #64739b;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ch-peserta-history-modal-footer button:hover {
+  background: #f5f6fc;
+}
+
+/* ========================================
+   RESPONSIVE HISTORY
+======================================== */
+
+@media (max-width: 600px) {
+  .ch-peserta-history-modal-backdrop {
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .ch-peserta-history-modal {
+    max-height: calc(100dvh - 24px);
+    border-radius: 16px;
+  }
+
+  .ch-peserta-history-modal-header,
+  .ch-peserta-history-modal-body {
+    padding: 19px;
+  }
+
+  .ch-peserta-history-modal-header h2 {
+    font-size: 17px;
+  }
+
+  .ch-peserta-history-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .ch-peserta-history-version-item,
+  .ch-peserta-history-version-list li {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ch-peserta-history-version-item button,
+  .ch-peserta-history-version-list li button {
+    width: 100%;
+  }
+
+  .ch-peserta-history-modal-footer {
+    padding: 15px 19px;
+  }
+}
+
+/* ========================================
+   MOBILE & TABLET: HISTORY TABLE CARDS
+======================================== */
+@media (max-width: 850px) {
+  .ch-peserta-history-table-wrapper {
+    overflow-x: visible;
+    background: transparent;
+    padding: 14px;
+  }
+
+  .ch-peserta-history-table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .ch-peserta-history-table thead {
+    display: none;
+  }
+
+  .ch-peserta-history-table tbody {
+    display: grid;
+    gap: 14px;
+  }
+
+  .ch-peserta-history-table tbody tr {
+    display: block;
+    overflow: hidden;
+    border: 1px solid rgba(112, 130, 190, 0.18);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: 0 4px 14px rgba(83, 102, 190, 0.06);
+  }
+
+  .ch-peserta-history-table tbody td {
+    display: block;
+    width: 100%;
+    padding: 13px 15px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(112, 130, 190, 0.12);
+    background: transparent;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .ch-peserta-history-table tbody td::before {
+    display: block;
+    margin-bottom: 6px;
+    color: #8490af;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .ch-peserta-history-table tbody td:nth-child(1)::before {
+    content: "Nama tugas";
+  }
+
+  .ch-peserta-history-table tbody td:nth-child(2)::before {
+    content: "File terbaru";
+  }
+
+  .ch-peserta-history-table tbody td:nth-child(3)::before {
+    content: "Waktu diperbarui";
+  }
+
+  .ch-peserta-history-table tbody td:nth-child(4)::before {
+    content: "Status";
+  }
+
+  .ch-peserta-history-table tbody td:nth-child(5)::before {
+    content: "Aksi";
+  }
+
+  .ch-peserta-history-table tbody td:last-child {
+    border-bottom: 0;
+  }
+
+  .ch-peserta-history-table tbody tr:hover td {
+    background: transparent;
+  }
+
+  .ch-peserta-history-file-name {
+    max-width: none;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .ch-peserta-history-status {
+    white-space: normal;
+  }
+}
