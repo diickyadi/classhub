@@ -80,10 +80,11 @@ export default function PesertaPengumpulanView({
     useState<SubmissionItem | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState<number | null>(null);
+  const selectedSubmissionId = selectedSubmission?.id;
 
 
   useEffect(() => {
-    if (!selectedSubmission) return;
+    if (selectedSubmissionId === undefined) return;
 
     const updateCurrentTime = () => {
       setCurrentTime(Date.now());
@@ -103,7 +104,7 @@ export default function PesertaPengumpulanView({
       window.clearInterval(interval);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [selectedSubmission?.id]);
+  }, [selectedSubmissionId]);
 
   useEffect(() => {
     if (!selectedSubmission) return;
