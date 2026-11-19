@@ -1,22 +1,29 @@
 .ch-peserta-history-panel {
   margin-top: 24px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.56);
-  box-shadow: 0 8px 28px rgba(64, 85, 223, 0.055);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow:
+    0 16px 40px rgba(64, 85, 223, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
 }
 
 .ch-peserta-history-panel-header {
   display: flex;
-  min-height: 76px;
+  min-height: 82px;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 18px 24px;
-  border-bottom: 1px solid rgba(120, 137, 190, 0.12);
+  padding: 20px 26px;
+  border-bottom: 1px solid rgba(112, 130, 190, 0.18);
+  background: linear-gradient(
+    115deg,
+    rgba(239, 242, 255, 0.96),
+    rgba(246, 244, 255, 0.88)
+  );
 }
 
 .ch-peserta-history-panel-header h3 {
@@ -106,28 +113,6 @@
 /* ========================================
    HISTORY TABLE - GLASSMORPHISM
 ======================================== */
-
-.ch-peserta-history-panel {
-  border: 1px solid rgba(255, 255, 255, 0.88);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.76);
-  box-shadow:
-    0 16px 40px rgba(64, 85, 223, 0.09),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-}
-
-.ch-peserta-history-panel-header {
-  min-height: 82px;
-  padding: 20px 26px;
-  border-bottom: 1px solid rgba(112, 130, 190, 0.18);
-  background: linear-gradient(
-    115deg,
-    rgba(239, 242, 255, 0.96),
-    rgba(246, 244, 255, 0.88)
-  );
-}
 
 .ch-peserta-history-table-wrapper {
   width: 100%;
@@ -532,19 +517,6 @@
 ======================================== */
 
 @media (max-width: 600px) {
-  .ch-peserta-history-panel {
-    border-radius: 15px;
-  }
-
-  .ch-peserta-history-panel-header {
-    min-height: 68px;
-    padding: 15px 17px;
-  }
-
-  .ch-peserta-history-table {
-    min-width: 850px;
-  }
-
   .ch-peserta-history-modal-backdrop {
     align-items: flex-start;
     padding: 12px;

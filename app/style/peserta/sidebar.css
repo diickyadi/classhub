@@ -1,3 +1,9 @@
+/* =====================================================
+   CLASSHUB - PESERTA SIDEBAR
+   Desktop, tablet, mobile, hamburger dropdown
+   ===================================================== */
+
+/* MAIN LAYOUT */
 .ch-peserta-dashboard {
   box-sizing: border-box;
   display: flex;
@@ -23,7 +29,7 @@
     );
 }
 
-
+/* SIDEBAR */
 .ch-peserta-sidebar {
   box-sizing: border-box;
   position: sticky;
@@ -36,27 +42,24 @@
   height: calc(100vh - 32px);
   margin: 16px 0 16px 16px;
   padding: 25px 15px;
-
   border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: 22px;
-
   background:
     linear-gradient(
       145deg,
       rgba(255, 255, 255, 0.48),
       rgba(255, 255, 255, 0.22)
     );
-
   box-shadow:
     0 20px 50px rgba(75, 95, 190, 0.10),
     0 4px 12px rgba(75, 95, 190, 0.04),
     inset 0 1px 1px rgba(255, 255, 255, 0.9),
     inset 0 -1px 1px rgba(255, 255, 255, 0.25);
-
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
 }
 
+/* BRAND */
 .ch-peserta-brand {
   display: flex;
   align-items: center;
@@ -84,6 +87,7 @@
   height: 27px;
 }
 
+/* MENU CAPTION */
 .ch-peserta-menuCaption {
   margin: 0;
   padding: 0 12px 17px;
@@ -93,6 +97,7 @@
   letter-spacing: 1.3px;
 }
 
+/* NAVIGATION */
 .ch-peserta-navigation {
   display: flex;
   flex-direction: column;
@@ -148,12 +153,14 @@
   stroke-width: 2.3;
 }
 
+/* SIDEBAR FOOTER */
 .ch-peserta-sidebarFooter {
   margin-top: auto;
   padding-top: 16px;
   border-top: 1px solid rgba(255, 255, 255, 0.55);
 }
 
+/* LOGOUT BUTTON */
 .ch-peserta-logoutButton {
   box-sizing: border-box;
   display: flex;
@@ -194,6 +201,46 @@
   opacity: 0.6;
 }
 
+/* SIDEBAR CONTENT */
+.ch-peserta-sidebarContent {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+/* MOBILE TOPBAR */
+.ch-peserta-sidebarTopbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* MOBILE TOGGLE */
+.ch-peserta-mobileToggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.48);
+  color: #526dff;
+  box-shadow:
+    0 5px 14px rgba(75, 95, 190, 0.07),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.ch-peserta-mobileToggle:hover {
+  background: rgba(255, 255, 255, 0.78);
+}
+
+/* TABLET */
 @media (max-width: 850px) {
   .ch-peserta-sidebar {
     flex-basis: 205px;
@@ -235,21 +282,37 @@
   }
 }
 
+/* MOBILE */
 @media (max-width: 600px) {
+  .ch-peserta-dashboard {
+    align-items: stretch;
+  }
+
   .ch-peserta-sidebar {
     position: relative;
     top: auto;
+    z-index: 500;
     flex: 0 0 auto;
+    align-self: stretch;
     width: auto;
     min-width: 0;
+    max-width: none;
     height: auto;
     margin: 10px 10px 0;
-    padding: 14px;
+    padding: 12px 14px;
+    gap: 0;
+    overflow: visible;
+    border-radius: 18px;
+  }
+
+  .ch-peserta-sidebarTopbar {
+    width: 100%;
+    min-height: 48px;
   }
 
   .ch-peserta-brand {
     gap: 11px;
-    padding: 0 5px 14px;
+    padding: 0 3px;
     font-size: 20px;
   }
 
@@ -259,342 +322,94 @@
     flex-basis: 44px;
   }
 
-  .ch-peserta-navigation {
-    flex-direction: row;
-    gap: 6px;
-    overflow-x: auto;
-    padding-bottom: 5px;
-  }
-
-  .ch-peserta-menuCaption {
-    display: none;
-  }
-
-  .ch-peserta-menuItem {
-    width: auto;
-    min-height: 42px;
-    flex: 0 0 auto;
-    gap: 8px;
-    padding: 0 10px;
-    white-space: nowrap;
-    font-size: 12px;
-  }
-
-  .ch-peserta-menuItem svg {
-    width: 18px;
-    height: 18px;
-    flex-basis: 18px;
-  }
-
-  .ch-peserta-sidebarFooter {
-    margin-top: 12px;
-    padding-top: 10px;
-  }
-
-  .ch-peserta-logoutButton {
-    min-height: 42px;
-    font-size: 13px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ch-peserta-menuItem,
-  .ch-peserta-logoutButton {
-    transition: none;
-  }
-}
-
-/* CLASSHUB SIDEBAR GLASS REFINEMENT */
-.ch-peserta-sidebar {
-  border: 1px solid rgba(255, 255, 255, 0.82);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255, 255, 255, 0.62),
-      rgba(255, 255, 255, 0.28)
-    );
-  box-shadow:
-    0 22px 55px rgba(75, 95, 190, 0.13),
-    0 5px 16px rgba(75, 95, 190, 0.06),
-    inset 0 1px 1px rgba(255, 255, 255, 0.98),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(30px) saturate(185%);
-  -webkit-backdrop-filter: blur(30px) saturate(185%);
-}
-
-/* MOBILE HAMBURGER NAVIGATION */
-.ch-peserta-sidebarTopbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.ch-peserta-mobileToggle {
-  display: none;
-  width: 42px;
-  height: 42px;
-  flex: 0 0 42px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.82);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.48);
-  color: #526dff;
-  box-shadow:
-    0 5px 14px rgba(75, 95, 190, 0.07),
-    inset 0 1px 1px rgba(255, 255, 255, 0.9);
-  cursor: pointer;
-  transition: background 180ms ease, transform 180ms ease;
-}
-
-.ch-peserta-mobileToggle:hover {
-  background: rgba(255, 255, 255, 0.78);
-}
-
-.ch-peserta-sidebarContent {
-  display: flex;
-  min-height: 0;
-  flex: 1;
-  flex-direction: column;
-}
-
-@media (max-width: 600px) {
-  .ch-peserta-sidebar {
-    gap: 0;
-    padding: 12px 14px;
-    border-radius: 18px;
-  }
-
-  .ch-peserta-sidebarTopbar {
-    width: 100%;
-  }
-
-  .ch-peserta-brand {
-    padding: 0 3px;
-  }
-
   .ch-peserta-mobileToggle {
     display: inline-flex;
   }
 
-  .ch-peserta-sidebarContent {
-    display: none;
-    width: 100%;
-    padding-top: 17px;
-  }
-
-  .ch-peserta-sidebar-open .ch-peserta-sidebarContent {
-    display: flex;
-  }
-
-  .ch-peserta-sidebarContent .ch-peserta-menuCaption {
-    display: block;
-    padding: 0 9px 10px;
-  }
-
-  .ch-peserta-navigation {
-    flex-direction: column;
-    gap: 5px;
-    overflow: visible;
-    padding: 0;
-  }
-
-  .ch-peserta-menuItem {
-    width: 100%;
-    min-height: 44px;
-    flex: 0 0 auto;
-    gap: 11px;
-    padding: 0 12px;
-    font-size: 13px;
-  }
-
-  .ch-peserta-menuItem svg {
-    width: 19px;
-    height: 19px;
-    flex-basis: 19px;
-  }
-
-  .ch-peserta-sidebarFooter {
-    margin-top: 12px;
-    padding-top: 10px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ch-peserta-mobileToggle {
-    transition: none;
-  }
-}
-
-
-/* FIX MOBILE SIDEBAR WIDTH */
-@media (max-width: 600px) {
-  .ch-peserta-dashboard {
-    align-items: stretch;
-  }
-
-  .ch-peserta-sidebar {
-    box-sizing: border-box;
-    align-self: stretch;
-    width: auto;
-    min-width: 0;
-    max-width: none;
-  }
-
-  .ch-peserta-main {
-    box-sizing: border-box;
-    width: 100%;
-    min-width: 0;
-  }
-}
-
-/* MOBILE HAMBURGER DROPDOWN */
-@media (max-width: 600px) {
-  .ch-peserta-sidebar {
-    position: relative;
-    z-index: 100;
-    align-self: stretch;
-    width: auto;
-    min-width: 0;
-    height: auto;
-    margin: 10px 10px 0;
-    padding: 12px 14px;
-    overflow: visible;
-  }
-
-  .ch-peserta-sidebarTopbar {
-    min-height: 48px;
-  }
-
-  .ch-peserta-brand {
-    padding: 0 3px;
-  }
-
+  /* DROPDOWN CONTAINER */
   .ch-peserta-sidebarContent {
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
     left: 0;
-    z-index: 200;
-    display: none;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 17px;
-    border: 1px solid rgba(255, 255, 255, 0.85);
-    border-radius: 18px;
-    background:
-      linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.88),
-        rgba(242, 245, 255, 0.76)
-      );
-    box-shadow:
-      0 20px 45px rgba(75, 95, 190, 0.16),
-      0 5px 15px rgba(75, 95, 190, 0.07),
-      inset 0 1px 1px rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(30px) saturate(185%);
-    -webkit-backdrop-filter: blur(30px) saturate(185%);
-  }
-
-  .ch-peserta-sidebar-open .ch-peserta-sidebarContent {
-    display: flex;
-  }
-
-  .ch-peserta-sidebarContent .ch-peserta-menuCaption {
-    display: block;
-    padding: 0 9px 10px;
-  }
-
-  .ch-peserta-navigation {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    overflow: visible;
-    padding: 0;
-  }
-
-  .ch-peserta-menuItem {
-    width: 100%;
-    min-height: 44px;
-    flex: 0 0 auto;
-    gap: 11px;
-    padding: 0 12px;
-    font-size: 13px;
-  }
-
-  .ch-peserta-sidebarFooter {
-    margin-top: 10px;
-    padding-top: 10px;
-  }
-}
-
-/* FIX MOBILE DROPDOWN GLASS OPACITY */
-@media (max-width: 600px) {
-  .ch-peserta-sidebar {
-    z-index: 500;
-  }
-
-  .ch-peserta-sidebarContent {
     z-index: 600;
-    max-height: calc(100dvh - 120px);
-    overflow-y: auto;
-    overscroll-behavior: contain;
-
+    display: none;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 0;
+    padding: 17px;
     border: 1px solid rgba(255, 255, 255, 0.96);
     border-radius: 18px;
-
     background:
       linear-gradient(
         145deg,
         rgba(250, 251, 255, 0.98),
         rgba(242, 245, 255, 0.96)
       );
-
     box-shadow:
       0 22px 55px rgba(65, 83, 160, 0.18),
       0 6px 18px rgba(65, 83, 160, 0.08),
       inset 0 1px 2px rgba(255, 255, 255, 1);
-
     backdrop-filter: blur(32px) saturate(160%);
     -webkit-backdrop-filter: blur(32px) saturate(160%);
+    max-height: calc(100dvh - 120px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
-  .ch-peserta-sidebarContent .ch-peserta-menuItem {
-    background: transparent;
+  .ch-peserta-sidebar-open .ch-peserta-sidebarContent {
+    display: flex;
   }
 
-  .ch-peserta-sidebarContent .ch-peserta-menuItem.ch-peserta-active {
-    background: rgba(82, 109, 255, 0.12);
-    border-color: rgba(82, 109, 255, 0.12);
-  }
-
-  .ch-peserta-sidebarContent .ch-peserta-sidebarFooter {
-    border-top-color: rgba(112, 130, 190, 0.16);
-  }
-}
-
-
-/* FIX MOBILE DROPDOWN SPACING */
-@media (max-width: 600px) {
+  /* DROPDOWN CAPTION */
   .ch-peserta-sidebarContent .ch-peserta-menuCaption {
+    display: block;
     padding: 0 10px 14px;
   }
 
+  /* DROPDOWN NAVIGATION */
   .ch-peserta-sidebarContent .ch-peserta-navigation {
+    display: flex;
+    flex-direction: column;
     gap: 8px;
+    overflow: visible;
+    padding: 0;
   }
 
   .ch-peserta-sidebarContent .ch-peserta-menuItem {
+    width: 100%;
     min-height: 49px;
+    flex: 0 0 auto;
     gap: 14px;
     padding: 0 14px;
     border-radius: 12px;
+    background: transparent;
     font-size: 14px;
   }
 
+  .ch-peserta-sidebarContent .ch-peserta-menuItem.ch-peserta-active {
+    border-color: rgba(82, 109, 255, 0.12);
+    background: rgba(82, 109, 255, 0.12);
+  }
+
+  /* DROPDOWN FOOTER */
   .ch-peserta-sidebarContent .ch-peserta-sidebarFooter {
     margin-top: 14px;
     padding-top: 13px;
+    border-top-color: rgba(112, 130, 190, 0.16);
+  }
+
+  .ch-peserta-sidebarContent .ch-peserta-logoutButton {
+    min-height: 42px;
+    font-size: 13px;
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .ch-peserta-menuItem,
+  .ch-peserta-logoutButton,
+  .ch-peserta-mobileToggle {
+    transition: none;
   }
 }

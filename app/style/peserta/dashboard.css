@@ -22,12 +22,7 @@
 }
 
 /* HEADER */
-.ch-peserta-main .ch-peserta-header {
-  min-height: 80px;
-  margin-bottom: 0;
-  padding: 15px 24px;
-  border-radius: 19px;
-}
+
 
 /* SECTION SHARED STYLE */
 .ch-peserta-groupCard,
@@ -370,11 +365,7 @@
     gap: 12px;
   }
 
-  .ch-peserta-main .ch-peserta-header {
-    min-height: auto;
-    padding: 14px 16px;
-    border-radius: 15px;
-  }
+
 
   .ch-peserta-groupCard,
   .ch-peserta-taskCard {

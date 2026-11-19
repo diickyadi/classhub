@@ -1,3 +1,4 @@
+/* TASK PANEL */
 .ch-peserta-task-panel {
   margin-top: 24px;
   overflow: hidden;
@@ -76,6 +77,7 @@
   line-height: 1.7;
 }
 
+/* TASK INFORMATION */
 .ch-peserta-task-information {
   display: flex;
   align-items: flex-start;
@@ -105,11 +107,10 @@
   line-height: 1.7;
 }
 
+/* MOBILE */
 @media (max-width: 600px) {
-
-
   .ch-peserta-task-panel {
-    margin-top: 18px;
+    margin-top: 16px;
     border-radius: 15px;
   }
 
@@ -120,33 +121,6 @@
 
   .ch-peserta-task-panel-header h3 {
     font-size: 15px;
-  }
-
-  .ch-peserta-task-empty {
-    min-height: 215px;
-    padding: 25px 18px;
-  }
-
-  .ch-peserta-task-information {
-    gap: 10px;
-    padding: 15px;
-  }
-
-  .ch-peserta-task-information p {
-    font-size: 12px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ch-peserta-task-panel {
-    scroll-behavior: auto;
-  }
-}
-
-/* MOBILE: COMPACT TASK EMPTY STATE */
-@media (max-width: 600px) {
-  .ch-peserta-task-panel {
-    margin-top: 16px;
   }
 
   .ch-peserta-task-empty {
@@ -187,5 +161,12 @@
   .ch-peserta-task-information p {
     font-size: 12px;
     line-height: 1.6;
+  }
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  .ch-peserta-task-panel {
+    scroll-behavior: auto;
   }
 }

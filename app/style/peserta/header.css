@@ -1,6 +1,7 @@
 .ch-peserta-header {
   box-sizing: border-box;
   position: relative;
+  isolation: isolate;
   display: flex;
   width: 100%;
   min-height: 88px;
@@ -26,6 +27,7 @@
 
 .ch-peserta-heading {
   min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .ch-peserta-eyebrow {
@@ -47,6 +49,14 @@
   letter-spacing: -0.6px;
 }
 
+.ch-peserta-heading-description {
+  margin: 7px 0 0;
+  color: #7783a4;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
 @media (max-width: 850px) {
   .ch-peserta-header {
     min-height: 80px;
@@ -61,6 +71,8 @@
 
 @media (max-width: 600px) {
   .ch-peserta-header {
+    width: 100%;
+    min-width: 0;
     min-height: 70px;
     padding: 12px 15px;
     border-radius: 15px;
@@ -68,44 +80,13 @@
 
   .ch-peserta-heading h1 {
     font-size: 19px;
+    overflow-wrap: anywhere;
   }
 
   .ch-peserta-eyebrow {
     font-size: 9px;
   }
-}
 
-
-/* HEADER GLASS FINISH */
-.ch-peserta-header {
-  isolation: isolate;
-}
-
-.ch-peserta-heading {
-  overflow-wrap: anywhere;
-}
-
-@media (max-width: 600px) {
-  .ch-peserta-header {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .ch-peserta-heading h1 {
-    overflow-wrap: anywhere;
-  }
-}
-
-/* HEADER PAGE DESCRIPTION */
-.ch-peserta-heading-description {
-  margin: 7px 0 0;
-  color: #7783a4;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.6;
-}
-
-@media (max-width: 600px) {
   .ch-peserta-heading-description {
     margin-top: 6px;
     font-size: 12px;
