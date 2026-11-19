@@ -11,7 +11,7 @@ export default function IdleTimeout() {
   const router = useRouter();
 
   const sessionActiveRef = useRef(false);
-  const lastActivityRef = useRef(Date.now());
+  const lastActivityRef = useRef(0);
   const logoutInProgressRef = useRef(false);
 
   useEffect(() => {
