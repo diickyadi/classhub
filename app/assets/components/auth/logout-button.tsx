@@ -54,7 +54,7 @@ export default function LogoutButton() {
         <path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6" />
       </svg>
 
-      <span>{isLoading ? "Keluar..." : "Logout"}</span>
+      <span>{isLoading ? "Keluar" : "Logout"}</span>
     </button>
   );
 }
