@@ -17,6 +17,48 @@
   --success: #12815E;
   --warning: #B96B17;
 
+  /* TYPOGRAPHY */
+  --font-family-base: var(--font-geist-sans), sans-serif;
+
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-display: clamp(42px, 4.2vw, 60px);
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+
+  --leading-tight: 1.2;
+  --leading-heading: 1.4;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.6;
+
+  /* ADDITIONAL TYPOGRAPHY SCALE */
+  --text-9: 9px;
+  --text-10: 10px;
+  --text-13: 13px;
+  --text-15: 15px;
+  --text-17: 17px;
+  --text-19: 19px;
+  --text-21: 21px;
+  --text-22: 22px;
+  --text-23: 23px;
+  --text-26: 26px;
+
+  --weight-650: 650;
+  --weight-750: 750;
+  --weight-850: 850;
+
+  --leading-stat: 1.1;
+  --leading-compact: 1.3;
+  --leading-loose: 1.7;
+
   --shadow-soft:
     0 8px 32px rgba(64, 85, 223, 0.08);
 
@@ -27,16 +69,32 @@
   --radius-md: 14px;
   --radius-lg: 18px;
   --radius-xl: 22px;
+  --radius-9: 9px;
+  --radius-11: 11px;
+  --radius-12: 12px;
+  --radius-13: 13px;
+  --radius-15: 15px;
+  --radius-16: 16px;
+  --radius-17: 17px;
+  --radius-19: 19px;
+  --radius-20: 20px;
 
   --transition-fast: 160ms ease;
   --transition-normal: 220ms ease;
+
+
+  /* ADDITIONAL TYPOGRAPHY TOKENS */
+  --text-18: 18px;
+  --leading-145: 1.45;
+  --leading-155: 1.55;
+  --leading-175: 1.75;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --font-sans: var(--font-dm-sans);
+  --font-sans: var(--font-geist-sans);
 }
 
 * {
@@ -72,12 +130,7 @@ body {
 
   color: var(--foreground);
 
-  font-family:
-    var(--font-dm-sans),
-    "DM Sans",
-    Arial,
-    Helvetica,
-    sans-serif;
+  font-family: var(--font-family-base);
 
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;

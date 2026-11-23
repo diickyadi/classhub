@@ -29,7 +29,7 @@
 .ch-peserta-taskCard {
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 16px;
+  border-radius: var(--radius-16);
   background: rgba(255, 255, 255, 0.14);
   box-shadow: 0 6px 22px rgba(83, 102, 190, 0.035);
   backdrop-filter: blur(26px);
@@ -46,31 +46,31 @@
 .ch-peserta-section-eyebrow {
   display: block;
   color: #526dff;
-  font-size: 10px;
-  font-weight: 800;
+  font-size: var(--text-10);
+  font-weight: var(--weight-extrabold);
   letter-spacing: 0.1em;
 }
 
 .ch-peserta-section-heading h3 {
   margin: 5px 0 0;
   color: #17213d;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 1.4;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-extrabold);
+  line-height: var(--leading-heading);
 }
 
 .ch-peserta-section-heading p {
   margin: 5px 0 0;
   color: #8490af;
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
 }
 
 .ch-peserta-section-heading > a {
   flex: 0 0 auto;
   color: #526dff;
-  font-size: 12px;
-  font-weight: 750;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-750);
   text-decoration: none;
 }
 
@@ -111,13 +111,13 @@
 
 .ch-peserta-group-info-item span {
   color: #8490af;
-  font-size: 11px;
+  font-size: var(--text-xs);
 }
 
 .ch-peserta-group-info-item strong {
   color: #344a83;
-  font-size: 13px;
-  font-weight: 750;
+  font-size: var(--text-13);
+  font-weight: var(--weight-750);
   overflow-wrap: anywhere;
 }
 
@@ -136,7 +136,7 @@
   flex-direction: column;
   padding: 15px 17px;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 15px;
+  border-radius: var(--radius-15);
   background: rgba(255, 255, 255, 0.14);
   box-shadow: 0 5px 18px rgba(83, 102, 190, 0.035);
   backdrop-filter: blur(26px);
@@ -145,25 +145,25 @@
 
 .ch-peserta-statistic-label {
   color: #7783a4;
-  font-size: 12px;
-  font-weight: 650;
-  line-height: 1.5;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-650);
+  line-height: var(--leading-normal);
 }
 
 .ch-peserta-statistic-value {
   margin-top: 7px;
   color: #26365f;
-  font-size: 26px;
-  font-weight: 850;
-  line-height: 1.1;
+  font-size: var(--text-26);
+  font-weight: var(--weight-850);
+  line-height: var(--leading-stat);
 }
 
 .ch-peserta-statistic-description {
   margin-top: auto;
   padding-top: 6px;
   color: #929cb5;
-  font-size: 10px;
-  line-height: 1.5;
+  font-size: var(--text-10);
+  line-height: var(--leading-normal);
 }
 
 /* TASK LIST */
@@ -192,24 +192,24 @@
 
 .ch-peserta-dashboard-task-info > span {
   color: #7184e8;
-  font-size: 10px;
-  font-weight: 750;
+  font-size: var(--text-10);
+  font-weight: var(--weight-750);
 }
 
 .ch-peserta-dashboard-task-info h4 {
   margin: 5px 0 0;
   color: #35415f;
-  font-size: 13px;
-  font-weight: 750;
-  line-height: 1.5;
+  font-size: var(--text-13);
+  font-weight: var(--weight-750);
+  line-height: var(--leading-normal);
   overflow-wrap: anywhere;
 }
 
 .ch-peserta-dashboard-task-info p {
   margin: 5px 0 0;
   color: #8490af;
-  font-size: 11px;
-  line-height: 1.5;
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
 }
 
 .ch-peserta-dashboard-task-status {
@@ -219,9 +219,9 @@
   justify-content: center;
   padding: 6px 10px;
   border: 1px solid transparent;
-  border-radius: 20px;
-  font-size: 10px;
-  font-weight: 750;
+  border-radius: var(--radius-20);
+  font-size: var(--text-10);
+  font-weight: var(--weight-750);
   text-align: center;
 }
 
@@ -242,21 +242,21 @@
   margin-top: 14px;
   padding: 18px;
   border: 1px dashed rgba(112, 130, 190, 0.24);
-  border-radius: 13px;
+  border-radius: var(--radius-13);
   background: rgba(247, 248, 255, 0.10);
 }
 
 .ch-peserta-dashboard-empty strong {
   color: #35415f;
-  font-size: 13px;
-  font-weight: 750;
+  font-size: var(--text-13);
+  font-weight: var(--weight-750);
 }
 
 .ch-peserta-dashboard-empty p {
   margin: 6px 0 0;
   color: #8490af;
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
 }
 
 /* ERROR STATE */
@@ -264,11 +264,11 @@
   margin-top: 14px;
   padding: 14px 16px;
   border: 1px solid rgba(211, 79, 91, 0.16);
-  border-radius: 11px;
+  border-radius: var(--radius-11);
   background: rgba(255, 240, 241, 0.8);
   color: #bd4c57;
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
 }
 
 /* QUICK LINKS */
@@ -285,7 +285,7 @@
   gap: 5px;
   padding: 13px 17px;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 13px;
+  border-radius: var(--radius-13);
   background: rgba(255, 255, 255, 0.12);
   text-decoration: none;
   transition: transform 0.2s ease, background 0.2s ease;
@@ -301,14 +301,14 @@
 
 .ch-peserta-dashboard-quick-links a span {
   color: #7184e8;
-  font-size: 10px;
-  font-weight: 750;
+  font-size: var(--text-10);
+  font-weight: var(--weight-750);
 }
 
 .ch-peserta-dashboard-quick-links a strong {
   color: #35415f;
-  font-size: 13px;
-  font-weight: 750;
+  font-size: var(--text-13);
+  font-weight: var(--weight-750);
 }
 
 /* TABLET */
@@ -370,7 +370,7 @@
   .ch-peserta-groupCard,
   .ch-peserta-taskCard {
     padding: 15px;
-    border-radius: 15px;
+    border-radius: var(--radius-15);
   }
 
   .ch-peserta-section-heading {
@@ -378,11 +378,11 @@
   }
 
   .ch-peserta-section-heading h3 {
-    font-size: 15px;
+    font-size: var(--text-15);
   }
 
   .ch-peserta-section-heading > a {
-    font-size: 11px;
+    font-size: var(--text-xs);
   }
 
   .ch-peserta-group-info {
@@ -399,21 +399,21 @@
     width: 100%;
     min-height: 96px;
     padding: 13px 14px;
-    border-radius: 14px;
+    border-radius: var(--radius-md);
   }
 
   .ch-peserta-statistic-label {
-    font-size: 11px;
+    font-size: var(--text-xs);
   }
 
   .ch-peserta-statistic-value {
     margin-top: 5px;
-    font-size: 23px;
+    font-size: var(--text-23);
   }
 
   .ch-peserta-statistic-description {
     padding-top: 5px;
-    font-size: 11px;
+    font-size: var(--text-xs);
   }
 
   .ch-peserta-dashboard-task {

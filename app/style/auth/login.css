@@ -1,7 +1,7 @@
 /* =====================================================
    VINIX7 LOGIN
    Midnight Blue — Lavender Glassmorphism
-   Font: DM Sans dari typography.css
+   Font: Geist Sans dari konfigurasi global
    ===================================================== */
 
 .login-page {
@@ -21,7 +21,7 @@
     radial-gradient(ellipse at 65% 90%, rgba(255, 255, 255, 0.55), transparent 42%),
     linear-gradient(135deg, #eef2ff 0%, #e4eaff 55%, #f1efff 100%);
   color: var(--navy);
-  font-family: "DM Sans", Arial, sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 

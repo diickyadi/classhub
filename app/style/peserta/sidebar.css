@@ -43,7 +43,7 @@
   margin: 16px 0 16px 16px;
   padding: 25px 15px;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 22px;
+  border-radius: var(--radius-xl);
   background:
     linear-gradient(
       145deg,
@@ -66,8 +66,8 @@
   gap: 12px;
   padding: 0 7px 34px;
   color: #17213d;
-  font-size: 22px;
-  font-weight: 800;
+  font-size: var(--text-22);
+  font-weight: var(--weight-extrabold);
   text-decoration: none;
 }
 
@@ -78,8 +78,8 @@
   margin: 0;
   padding: 0 12px 17px;
   color: #8994b3;
-  font-size: 10px;
-  font-weight: 800;
+  font-size: var(--text-10);
+  font-weight: var(--weight-extrabold);
   letter-spacing: 1.3px;
 }
 
@@ -99,10 +99,10 @@
   gap: 15px;
   padding: 0 15px;
   border: 1px solid transparent;
-  border-radius: 11px;
+  border-radius: var(--radius-11);
   color: #65718f;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
   text-decoration: none;
   transition:
     background 180ms ease,
@@ -126,7 +126,7 @@
     rgba(143, 157, 255, 0.10)
   );
   color: #435ce8;
-  font-weight: 800;
+  font-weight: var(--weight-extrabold);
   box-shadow:
     0 5px 15px rgba(82, 109, 255, 0.07),
     inset 0 1px 1px rgba(255, 255, 255, 0.65);
@@ -156,12 +156,12 @@
   gap: 15px;
   padding: 0 15px;
   border: 1px solid transparent;
-  border-radius: 11px;
+  border-radius: var(--radius-11);
   background: transparent;
   color: #d45f70;
   font-family: inherit;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
   text-align: left;
   cursor: pointer;
   transition:
@@ -212,7 +212,7 @@
   align-items: center;
   justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 12px;
+  border-radius: var(--radius-12);
   background: rgba(255, 255, 255, 0.14);
   color: #526dff;
   box-shadow:
@@ -237,7 +237,7 @@
 
   .ch-peserta-brand {
     gap: 10px;
-    font-size: 19px;
+    font-size: var(--text-19);
   }
 
 
@@ -245,7 +245,7 @@
     min-height: 46px;
     gap: 9px;
     padding: 0 9px;
-    font-size: 12px;
+    font-size: var(--text-sm);
   }
 
   .ch-peserta-menuItem svg {
@@ -259,7 +259,7 @@
     min-height: 44px;
     gap: 9px;
     padding: 0 9px;
-    font-size: 12px;
+    font-size: var(--text-sm);
   }
 }
 
@@ -283,7 +283,7 @@
     padding: 12px 14px;
     gap: 0;
     overflow: visible;
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
   }
 
   .ch-peserta-sidebarTopbar {
@@ -294,7 +294,7 @@
   .ch-peserta-brand {
     gap: 11px;
     padding: 0 3px;
-    font-size: 20px;
+    font-size: var(--text-xl);
   }
 
 
@@ -315,7 +315,7 @@
     min-height: 0;
     padding: 17px;
     border: 1px solid rgba(255, 255, 255, 0.28);
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
     background:
       linear-gradient(
         145deg,
@@ -358,9 +358,9 @@
     flex: 0 0 auto;
     gap: 14px;
     padding: 0 14px;
-    border-radius: 12px;
+    border-radius: var(--radius-12);
     background: transparent;
-    font-size: 14px;
+    font-size: var(--text-base);
   }
 
   .ch-peserta-sidebarContent .ch-peserta-menuItem.ch-peserta-active {
@@ -377,7 +377,7 @@
 
   .ch-peserta-sidebarContent .ch-peserta-logoutButton {
     min-height: 42px;
-    font-size: 13px;
+    font-size: var(--text-13);
   }
 }
 
