@@ -168,7 +168,7 @@ export default function Home() {
           <div className="login-panel-content">
             <div className="login-heading">
               <span className="login-eyebrow">SELAMAT DATANG KEMBALI</span>
-              <h2>Masuk ke VINIX7</h2>
+              <h2>Masuk</h2>
               <p>Kelola tugas dan progresmu dengan lebih mudah.</p>
             </div>
 
