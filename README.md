@@ -1,8 +1,8 @@
-# ClassHub
+# VINIX7
 
 **Smart Assignment Submission Platform**
 
-ClassHub adalah platform pengumpulan tugas yang membantu peserta mengirimkan tugas secara terstruktur dan membantu mentor mengelola serta memantau pengumpulan tugas.
+VINIX7 adalah platform pengumpulan tugas yang membantu peserta mengirimkan tugas secara terstruktur dan membantu mentor mengelola serta memantau pengumpulan tugas.
 
 ## Tech Stack
 

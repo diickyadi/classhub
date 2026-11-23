@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ClassHub | Smart Assignment Platform",
-  description: "Platform pengumpulan tugas kelompok ClassHub",
+  title: "VINIX7 | Smart Assignment Platform",
+  description: "Platform pengumpulan tugas kelompok VINIX7",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

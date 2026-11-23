@@ -133,7 +133,7 @@ export default async function PicDashboardPage() {
       <div className="mx-auto max-w-7xl">
         <header className="mb-8">
           <p className="text-sm font-medium text-blue-600">
-            CLASSHUB / DASHBOARD PIC
+            VINIX7 / DASHBOARD PIC
           </p>
           <h1 className="mt-2 text-3xl font-bold text-slate-900">
             Selamat datang, {profile.full_name}

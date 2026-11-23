@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import LogoutButton from "@/app/assets/components/auth/logout-button";
+import BrandLogo from "@/app/assets/components/common/brand-logo";
 
 const menuItems = [
   {
@@ -69,27 +70,7 @@ export default function PesertaSidebar({
           className="ch-peserta-brand"
           onClick={() => setIsMenuOpen(false)}
         >
-          <span className="ch-peserta-brandMark">
-            <svg
-              viewBox="0 0 40 40"
-              width="30"
-              height="30"
-              fill="none"
-              stroke="white"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M20 12C16 9 10 9 5 11v20c5-2 11-2 15 1" />
-              <path d="M20 12c4-3 10-3 15-1v20c-5-2-11-2-15 1" />
-              <path d="M20 12v20" />
-              <path d="M9 16c3-1 6-1 8 0M9 21c3-1 6-1 8 0" />
-              <path d="M31 16c-3-1-6-1-8 0M31 21c-3-1-6-1-8 0" />
-            </svg>
-          </span>
-
-          <span>ClassHub</span>
+          <BrandLogo width={110} />
         </Link>
 
         <button

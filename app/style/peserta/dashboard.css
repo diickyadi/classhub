@@ -1,5 +1,5 @@
 /* =====================================================
-   CLASSHUB - PESERTA DASHBOARD
+   VINIX7 - PESERTA DASHBOARD
    Clean layout, responsive, lavender-blue theme
    ===================================================== */
 
@@ -28,12 +28,12 @@
 .ch-peserta-groupCard,
 .ch-peserta-taskCard {
   box-sizing: border-box;
-  border: 1px solid rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.58);
-  box-shadow: 0 6px 22px rgba(83, 102, 190, 0.05);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 6px 22px rgba(83, 102, 190, 0.035);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
 }
 
 .ch-peserta-section-heading {
@@ -135,12 +135,12 @@
   min-height: 104px;
   flex-direction: column;
   padding: 15px 17px;
-  border: 1px solid rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 15px;
-  background: rgba(255, 255, 255, 0.64);
-  box-shadow: 0 5px 18px rgba(83, 102, 190, 0.045);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 5px 18px rgba(83, 102, 190, 0.035);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
 }
 
 .ch-peserta-statistic-label {
@@ -243,7 +243,7 @@
   padding: 18px;
   border: 1px dashed rgba(112, 130, 190, 0.24);
   border-radius: 13px;
-  background: rgba(247, 248, 255, 0.62);
+  background: rgba(247, 248, 255, 0.10);
 }
 
 .ch-peserta-dashboard-empty strong {
@@ -284,18 +284,18 @@
   flex-direction: column;
   gap: 5px;
   padding: 13px 17px;
-  border: 1px solid rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 13px;
-  background: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.12);
   text-decoration: none;
   transition: transform 0.2s ease, background 0.2s ease;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .ch-peserta-dashboard-quick-links a:hover {
   transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.20);
   box-shadow: 0 5px 15px rgba(83, 102, 190, 0.05);
 }
 

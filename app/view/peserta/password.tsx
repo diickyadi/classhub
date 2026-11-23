@@ -9,7 +9,7 @@ export default function PesertaPasswordView() {
 
       <main className="ch-peserta-main">
         <div className="ch-peserta-content">
-          <PesertaHeader title="Ganti Password" description="Kelola keamanan password akun ClassHub kamu." />
+          <PesertaHeader title="Ganti Password" description="Kelola keamanan password akun VINIX7 kamu." />
 
 
 
