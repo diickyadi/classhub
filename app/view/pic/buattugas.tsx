@@ -4,6 +4,7 @@ import PicButton from "@/app/assets/components/pic/button";
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { createPortal } from "react-dom";
 
 type Props = {
   divisionName: string;
@@ -164,7 +165,7 @@ export default function BuatTugas({ divisionName }: Props) {
         </p>
       )}
 
-      {isOpen && (
+      {isOpen && createPortal((
         <div
           className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-slate-950/50 p-4"
           onMouseDown={(event) => {
@@ -325,7 +326,7 @@ export default function BuatTugas({ divisionName }: Props) {
             </form>
           </div>
         </div>
-      )}
+      ), document.body)}
     </section>
   );
 }
