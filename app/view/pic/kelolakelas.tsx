@@ -1,7 +1,12 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import PicSelect from "@/app/assets/components/pic/select";
+
+import PicButton from "@/app/assets/components/pic/button";
+
+import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import styles from "@/app/style/pic/dashboard.module.css";
 
 type Participant = {
   id: string;
@@ -50,12 +55,6 @@ export default function KelolaKelas({ divisionName }: Props) {
       setLoadingParticipants(false);
     }
   }
-
-  useEffect(() => {
-    if (isOpen) {
-      void loadParticipants();
-    }
-  }, [isOpen]);
 
   function toggleParticipant(id: string) {
     setSelectedIds((current) => {
@@ -137,28 +136,21 @@ export default function KelolaKelas({ divisionName }: Props) {
   }
 
   return (
-    <section className="mt-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h2 className="text-xl font-bold text-slate-900">
-            Kelola Kelompok
-          </h2>
-          <p className="mt-1 text-sm text-slate-500">
-            Buat kelompok dan tentukan ketua untuk divisi {divisionName}.
-          </p>
-        </div>
+    <section className={styles.groupCard}>
+      <div className="flex justify-end">
 
-        <button
+
+        <PicButton variant="primary"
           type="button"
           onClick={() => {
             setSuccess("");
             setError("");
             setIsOpen(true);
+            void loadParticipants();
           }}
-          className="rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
         >
           + Buat Kelompok
-        </button>
+        </PicButton>
       </div>
 
       {success && (
@@ -199,7 +191,7 @@ export default function KelolaKelas({ divisionName }: Props) {
                 </p>
               </div>
 
-              <button
+              <PicButton variant="ghost"
                 type="button"
                 disabled={submitting}
                 onClick={() => {
@@ -207,10 +199,9 @@ export default function KelolaKelas({ divisionName }: Props) {
                   resetForm();
                 }}
                 aria-label="Tutup modal"
-                className="rounded-lg px-3 py-2 text-xl text-slate-400 hover:bg-slate-100 hover:text-slate-700 disabled:opacity-50"
               >
                 ×
-              </button>
+              </PicButton>
             </div>
 
             <form onSubmit={handleSubmit}>
@@ -246,14 +237,13 @@ export default function KelolaKelas({ divisionName }: Props) {
                       </p>
                     </div>
 
-                    <button
+                    <PicButton variant="ghost"
                       type="button"
                       onClick={() => void loadParticipants()}
                       disabled={loadingParticipants}
-                      className="text-sm font-medium text-blue-600 hover:text-blue-700 disabled:opacity-50"
                     >
                       Muat ulang
-                    </button>
+                    </PicButton>
                   </div>
 
                   {loadingParticipants ? (
@@ -309,25 +299,30 @@ export default function KelolaKelas({ divisionName }: Props) {
                     Ketua Kelompok
                   </label>
 
-                  <select
+                  <PicSelect
                     id="group-leader"
+                    ariaLabel="Ketua kelompok"
+                    width="full"
                     required
                     value={leaderId}
-                    onChange={(event) => setLeaderId(event.target.value)}
+                    onValueChange={setLeaderId}
                     disabled={selectedIds.length === 0}
-                    className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 disabled:bg-slate-100"
-                  >
-                    <option value="">Pilih ketua kelompok</option>
-                    {participants
-                      .filter((participant) =>
-                        selectedIds.includes(participant.id)
-                      )
-                      .map((participant) => (
-                        <option key={participant.id} value={participant.id}>
-                          {participant.fullName}
-                        </option>
-                      ))}
-                  </select>
+                    placeholder="Pilih ketua kelompok"
+                    options={[
+                      {
+                        value: "",
+                        label: "Pilih ketua kelompok",
+                      },
+                      ...participants
+                        .filter((participant) =>
+                          selectedIds.includes(participant.id)
+                        )
+                        .map((participant) => ({
+                          value: participant.id,
+                          label: participant.fullName,
+                        })),
+                    ]}
+                  />
 
                   <p className="mt-2 text-xs text-slate-500">
                     Ketua harus merupakan salah satu anggota kelompok.
@@ -345,29 +340,27 @@ export default function KelolaKelas({ divisionName }: Props) {
               </div>
 
               <div className="flex flex-col-reverse gap-3 border-t border-slate-100 p-6 sm:flex-row sm:justify-end">
-                <button
+                <PicButton variant="secondary"
                   type="button"
                   disabled={submitting}
                   onClick={() => {
                     setIsOpen(false);
                     resetForm();
                   }}
-                  className="rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
                 >
                   Batal
-                </button>
+                </PicButton>
 
-                <button
+                <PicButton variant="primary"
                   type="submit"
                   disabled={
                     submitting ||
                     loadingParticipants ||
                     participants.length === 0
                   }
-                  className="rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {submitting ? "Menyimpan..." : "Simpan Kelompok"}
-                </button>
+                </PicButton>
               </div>
             </form>
           </div>

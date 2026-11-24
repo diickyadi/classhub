@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import KelolaKelas from "@/app/view/pic/kelolakelas";
 import Pengumpulan from "@/app/view/pic/pengumpulan";
+import styles from "@/app/style/pic/dashboard.module.css";
 
 export const instant = false;
 
@@ -135,49 +136,37 @@ export default async function PicDashboardPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-50 p-6 md:p-10">
-      <div className="mx-auto max-w-7xl">
-        <header className="mb-8">
-          <p className="text-sm font-medium text-blue-600">
-            CLASSHUB / DASHBOARD PIC
-          </p>
-          <h1 className="mt-2 text-3xl font-bold text-slate-900">
-            Selamat datang, {profile.full_name}
-          </h1>
-          <p className="mt-2 text-slate-500">
-            Kelola tugas dan pantau aktivitas divisi kamu.
-          </p>
-        </header>
-
-        <section className="mb-8 rounded-2xl bg-blue-600 p-6 text-white shadow-sm">
-          <p className="text-sm text-blue-100">
+    <main className={styles.dashboardMain}>
+      <div className={styles.dashboardContainer}>
+<section className={styles.divisionBanner}>
+          <p className={styles.divisionEyebrow}>
             Divisi yang kamu kelola
           </p>
-          <h2 className="mt-2 text-2xl font-bold">
+          <h2 className={styles.divisionName}>
             {division.name}
           </h2>
           {division.description && (
-            <p className="mt-2 text-sm text-blue-100">
+            <p className={styles.divisionDescription}>
               {division.description}
             </p>
           )}
         </section>
 
         <section>
-          <h2 className="mb-4 text-xl font-bold text-slate-900">
+          <h2 className={styles.sectionTitle}>
             Ringkasan Divisi
           </h2>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className={styles.statsGrid}>
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+                className={styles.statCard}
               >
-                <p className="text-sm text-slate-500">
+                <p className={styles.statLabel}>
                   {stat.label}
                 </p>
-                <p className="mt-3 text-3xl font-bold text-slate-900">
+                <p className={styles.statValue}>
                   {stat.value}
                 </p>
               </div>
@@ -191,10 +180,10 @@ export default async function PicDashboardPage() {
 
         <section className="mt-10">
           <h2 className="mb-4 text-xl font-bold text-slate-900">
-            Daftar Tugas
+            Tugas Terbaru
           </h2>
 
-          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+          <div className={styles.taskListCard}>
             {upcomingResult.data && upcomingResult.data.length > 0 ? (
               <div className="divide-y divide-slate-100">
                 {upcomingResult.data.map((assignment) => (

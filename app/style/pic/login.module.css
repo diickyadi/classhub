@@ -1,0 +1,413 @@
+/* =====================================================
+   CLASSHUB PIC LOGIN
+   Modern Glassmorphism - Soft Blue & Lavender
+   ===================================================== */
+
+.page {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  padding: 35px 20px;
+  color: #17213d;
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(125, 151, 255, 0.22),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(172, 151, 255, 0.25),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #eaf0ff, #f7f8ff 55%, #e9eaff);
+}
+
+.backgroundDecoration {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  top: -240px;
+  right: -160px;
+  border-radius: 50%;
+  background: rgba(113, 137, 255, 0.12);
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.loginCard {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  width: 100%;
+  max-width: 970px;
+  min-height: 570px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 27px;
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 25px 75px rgba(70, 91, 155, 0.12);
+}
+
+/* BRAND PANEL */
+
+.introPanel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 39px 43px 30px;
+  border-right: 1px solid rgba(255, 255, 255, 0.65);
+  background:
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(255, 255, 255, 0.4),
+      transparent 35%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(218, 230, 255, 0.94),
+      rgba(227, 223, 255, 0.88)
+    );
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 43px;
+  height: 43px;
+  border-radius: 13px;
+  color: #fff;
+  background: linear-gradient(145deg, #526dff, #4055df);
+  box-shadow: 0 7px 16px rgba(82, 109, 255, 0.25);
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.brand h1 {
+  color: #17213d;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
+
+.brand h1 span {
+  color: #526dff;
+}
+
+.brand p {
+  margin-top: 3px;
+  color: #7783a4;
+  font-size: 10px;
+  letter-spacing: 0.3px;
+}
+
+.introContent {
+  margin-top: 40px;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 7px 11px;
+  border: 1px solid rgba(82, 109, 255, 0.13);
+  border-radius: 20px;
+  color: #526dff;
+  background: rgba(255, 255, 255, 0.46);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.introContent h2 {
+  margin-top: 21px;
+  color: #17213d;
+  font-size: clamp(28px, 3.3vw, 36px);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -1.2px;
+}
+
+.introContent > p {
+  max-width: 365px;
+  margin-top: 15px;
+  color: #7783a4;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.visualCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 330px;
+  height: 135px;
+  margin-top: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.visualCard svg {
+  width: 220px;
+  max-width: 100%;
+}
+
+.introFooter {
+  margin-top: 30px;
+  color: #8994b0;
+  font-size: 10px;
+}
+
+/* FORM PANEL */
+
+.formPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 45px 43px;
+  background: rgba(255, 255, 255, 0.53);
+}
+
+.formBadge {
+  display: inline-block;
+  padding: 7px 10px;
+  border-radius: 8px;
+  color: #526dff;
+  background: #edf1ff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.formHeading h2 {
+  margin-top: 19px;
+  color: #17213d;
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+}
+
+.formHeading p {
+  margin-top: 8px;
+  color: #7783a4;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* FORM */
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.inputGroup label {
+  color: #344365;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.inputGroup input {
+  width: 100%;
+  height: 47px;
+  padding: 0 14px;
+  border: 1px solid #dce3f3;
+  border-radius: 11px;
+  outline: none;
+  color: #17213d;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inputGroup input::placeholder {
+  color: #a0abc3;
+}
+
+.inputGroup input:focus {
+  border-color: #526dff;
+  box-shadow: 0 0 0 3px rgba(82, 109, 255, 0.1);
+}
+
+.inputGroup input:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.errorMessage {
+  padding: 12px 13px;
+  border: 1px solid #ffcdd7;
+  border-radius: 10px;
+  color: #bd3855;
+  background: #fff1f4;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.submitButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 3px;
+  border: 0;
+  border-radius: 11px;
+  color: #fff;
+  background: linear-gradient(110deg, #526dff, #4055df);
+  box-shadow: 0 7px 16px rgba(82, 109, 255, 0.2);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 21px rgba(82, 109, 255, 0.27);
+}
+
+.submitButton:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.formFooter {
+  margin-top: 38px;
+  color: #a0abc0;
+  font-size: 10px;
+  text-align: center;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* TABLET */
+
+@media (max-width: 850px) {
+  .loginCard {
+    max-width: 690px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .introPanel {
+    padding: 32px 25px 25px;
+  }
+
+  .formPanel {
+    padding: 35px 25px;
+  }
+
+  .introContent h2 {
+    font-size: 29px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 620px) {
+  .page {
+    padding: 18px 13px;
+  }
+
+  .loginCard {
+    display: flex;
+    flex-direction: column;
+    max-width: 430px;
+    min-height: auto;
+    border-radius: 22px;
+  }
+
+  .introPanel {
+    padding: 24px 23px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  }
+
+  .brandLogo {
+    width: 39px;
+    height: 39px;
+  }
+
+  .introContent {
+    margin-top: 32px;
+  }
+
+  .introContent h2 {
+    margin-top: 14px;
+    font-size: 27px;
+  }
+
+  .introContent > p {
+    font-size: 11px;
+  }
+
+  .visualCard {
+    display: none;
+  }
+
+  .introFooter {
+    margin-top: 24px;
+  }
+
+  .formPanel {
+    padding: 30px 23px;
+  }
+
+  .formHeading h2 {
+    font-size: 24px;
+  }
+
+  .loginForm {
+    margin-top: 25px;
+    gap: 17px;
+  }
+
+  .formFooter {
+    margin-top: 27px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner,
+  .submitButton {
+    animation: none;
+    transition: none;
+  }
+}
