@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import BrandLogo from "@/app/assets/components/common/brand-logo";
 import "@/app/style/auth/login.css";
 
 type UserRole = "PESERTA" | "PIC";
@@ -107,7 +108,7 @@ export default function Home() {
           <div className="showcase-glow showcase-glow-two" />
 
           <div className="showcase-brand">
-            <span className="showcase-brand-name">ClassHub</span>
+            <BrandLogo width={125} />
           </div>
 
           <div className="showcase-content">
@@ -189,11 +190,15 @@ export default function Home() {
           <div className="login-panel-content">
             <div className="login-heading">
               <span className="login-eyebrow">SELAMAT DATANG KEMBALI</span>
-              <h2>Masuk ke ClassHub</h2>
+              <h2>Masuk ke VINIX7</h2>
               <p>Kelola tugas dan progresmu dengan lebih mudah.</p>
             </div>
 
-            <form className="login-form" onSubmit={handleLogin}>
+            <form
+              className="login-form"
+              onSubmit={handleLogin}
+              autoComplete="off"
+            >
               <div className="login-role-wrapper">
                 <span className="login-label">Masuk sebagai</span>
 
@@ -267,7 +272,7 @@ export default function Home() {
                   <input
                     id="email"
                     type="email"
-                    autoComplete="email"
+                    autoComplete="off"
                     required
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
@@ -302,7 +307,7 @@ export default function Home() {
                   <input
                     id="password"
                     type={showPassword ? "text" : "password"}
-                    autoComplete="current-password"
+                    autoComplete="off"
                     required
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
@@ -391,7 +396,7 @@ export default function Home() {
             </div>
 
             <footer className="login-footer">
-              © 2026 ClassHub. All rights reserved.
+              © 2026 VINIX7. All rights reserved.
             </footer>
           </div>
         </section>

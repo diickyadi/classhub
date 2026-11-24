@@ -1,3 +1,5 @@
+import "@/app/style/components/brand-logo.css";
+
 type BrandLogoProps = {
   width?: number;
   className?: string;

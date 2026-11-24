@@ -2,21 +2,12 @@
 .ch-peserta-task-panel {
   margin-top: 24px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.82);
-  border-radius: 18px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.62),
-      rgba(255, 255, 255, 0.28)
-    );
-  box-shadow:
-    0 14px 38px rgba(83, 102, 190, 0.09),
-    0 4px 12px rgba(83, 102, 190, 0.04),
-    inset 0 1px 1px rgba(255, 255, 255, 0.95),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(26px) saturate(180%);
-  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 6px 22px rgba(83, 102, 190, 0.05);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
 }
 
 .ch-peserta-task-panel-header {
@@ -32,18 +23,18 @@
 .ch-peserta-task-panel-header h3 {
   margin: 0;
   color: #17213d;
-  font-size: 17px;
-  font-weight: 750;
+  font-size: var(--text-17);
+  font-weight: var(--weight-750);
 }
 
 .ch-peserta-task-count {
   padding: 6px 11px;
   border: 1px solid rgba(82, 109, 255, 0.12);
-  border-radius: 20px;
+  border-radius: var(--radius-20);
   background: rgba(82, 109, 255, 0.08);
   color: #526dff;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
 }
 
 .ch-peserta-task-empty {
@@ -65,16 +56,16 @@
 .ch-peserta-task-empty h4 {
   margin: 0;
   color: #17213d;
-  font-size: 16px;
-  font-weight: 750;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-750);
 }
 
 .ch-peserta-task-empty p {
   max-width: 390px;
   margin: 8px 0 0;
   color: #7783a4;
-  font-size: 13px;
-  line-height: 1.7;
+  font-size: var(--text-13);
+  line-height: var(--leading-loose);
 }
 
 /* TASK INFORMATION */
@@ -85,7 +76,7 @@
   margin-top: 20px;
   padding: 18px 20px;
   border: 1px solid rgba(82, 109, 255, 0.12);
-  border-radius: 15px;
+  border-radius: var(--radius-15);
   background: rgba(237, 240, 255, 0.58);
 }
 
@@ -95,7 +86,7 @@
   height: 34px;
   flex: 0 0 34px;
   place-items: center;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: rgba(82, 109, 255, 0.1);
   color: #526dff;
 }
@@ -103,15 +94,15 @@
 .ch-peserta-task-information p {
   margin: 0;
   color: #65718f;
-  font-size: 13px;
-  line-height: 1.7;
+  font-size: var(--text-13);
+  line-height: var(--leading-loose);
 }
 
 /* MOBILE */
 @media (max-width: 600px) {
   .ch-peserta-task-panel {
     margin-top: 16px;
-    border-radius: 15px;
+    border-radius: var(--radius-15);
   }
 
   .ch-peserta-task-panel-header {
@@ -120,7 +111,7 @@
   }
 
   .ch-peserta-task-panel-header h3 {
-    font-size: 15px;
+    font-size: var(--text-15);
   }
 
   .ch-peserta-task-empty {
@@ -135,21 +126,21 @@
   }
 
   .ch-peserta-task-empty h4 {
-    font-size: 15px;
+    font-size: var(--text-15);
   }
 
   .ch-peserta-task-empty p {
     max-width: 340px;
     margin-top: 7px;
-    font-size: 12px;
-    line-height: 1.55;
+    font-size: var(--text-sm);
+    line-height: var(--leading-155);
   }
 
   .ch-peserta-task-information {
     gap: 10px;
     margin-top: 14px;
     padding: 13px;
-    border-radius: 13px;
+    border-radius: var(--radius-13);
   }
 
   .ch-peserta-task-information-icon {
@@ -159,8 +150,8 @@
   }
 
   .ch-peserta-task-information p {
-    font-size: 12px;
-    line-height: 1.6;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
   }
 }
 
@@ -197,7 +188,7 @@
 .ch-peserta-task-item-module {
   color: #6578d9;
   font-size: 11px;
-  font-weight: 750;
+  font-weight: var(--weight-750);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -206,22 +197,22 @@
   margin: 6px 0;
   color: #17213d;
   font-size: 15px;
-  font-weight: 750;
+  font-weight: var(--weight-750);
 }
 
 .ch-peserta-task-item-content > p {
   margin: 0;
   color: #8490af;
-  font-size: 12px;
+  font-size: var(--text-sm);
 }
 
 .ch-peserta-task-status {
   display: inline-flex;
   margin-top: 10px;
   padding: 5px 10px;
-  border-radius: 20px;
+  border-radius: var(--radius-20);
   font-size: 11px;
-  font-weight: 700;
+  font-weight: var(--weight-bold);
 }
 
 .ch-peserta-task-status-submitted {
@@ -249,11 +240,11 @@
   min-height: 40px;
   padding: 0 15px;
   border: 1px solid rgba(82, 109, 255, 0.25);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.7);
   color: #526dff;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
   cursor: pointer;
   transition: background 160ms ease;
 }

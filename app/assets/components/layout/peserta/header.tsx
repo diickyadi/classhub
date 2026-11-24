@@ -11,7 +11,7 @@ export default function PesertaHeader({
     <header className="ch-peserta-header">
       <div className="ch-peserta-heading">
         <span className="ch-peserta-eyebrow">
-          WORKSPACE / CLASSHUB
+          WORKSPACE / VINIX7
         </span>
 
         <h1>{title}</h1>
