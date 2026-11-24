@@ -1,5 +1,7 @@
 "use client";
 
+import PicButton from "@/app/assets/components/pic/button";
+
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
@@ -24,11 +26,10 @@ export default function BuatTugas({ divisionName }: Props) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  const now = new Date();
-  const minimumDeadline = toLocalDateTimeValue(now);
-  const maximumDeadline = toLocalDateTimeValue(
-    new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
-  );
+  const [deadlineBounds, setDeadlineBounds] = useState({
+    minimum: "",
+    maximum: "",
+  });
 
   function resetForm() {
     setTitle("");
@@ -120,28 +121,38 @@ export default function BuatTugas({ divisionName }: Props) {
   }
 
   return (
-    <section className="mt-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h2 className="text-xl font-bold text-slate-900">
-            Buat Tugas
-          </h2>
-          <p className="mt-1 text-sm text-slate-500">
-            Buat tugas baru untuk peserta divisi {divisionName}.
-          </p>
-        </div>
+    <section
+      className="mt-10 rounded-2xl border p-6 shadow-sm"
+      style={{
+        background: "rgba(255, 255, 255, 0.14)",
+        borderColor: "rgba(255, 255, 255, 0.28)",
+        boxShadow: "0 6px 22px rgba(83, 102, 190, 0.035)",
+        backdropFilter: "blur(26px)",
+        WebkitBackdropFilter: "blur(26px)",
+      }}
+    >
+      <div className="flex justify-end">
 
-        <button
+
+        <PicButton variant="primary"
           type="button"
           onClick={() => {
+            const now = new Date();
+
+            setDeadlineBounds({
+              minimum: toLocalDateTimeValue(now),
+              maximum: toLocalDateTimeValue(
+                new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+              ),
+            });
+
             setError("");
             setSuccess("");
             setIsOpen(true);
           }}
-          className="rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
         >
           + Buat Tugas
-        </button>
+        </PicButton>
       </div>
 
       {success && (
@@ -182,7 +193,7 @@ export default function BuatTugas({ divisionName }: Props) {
                 </p>
               </div>
 
-              <button
+              <PicButton variant="ghost"
                 type="button"
                 disabled={submitting}
                 onClick={() => {
@@ -190,10 +201,9 @@ export default function BuatTugas({ divisionName }: Props) {
                   resetForm();
                 }}
                 aria-label="Tutup modal"
-                className="rounded-lg px-3 py-2 text-xl text-slate-400 hover:bg-slate-100 hover:text-slate-700 disabled:opacity-50"
               >
                 ×
-              </button>
+              </PicButton>
             </div>
 
             <form onSubmit={handleSubmit}>
@@ -271,8 +281,8 @@ export default function BuatTugas({ divisionName }: Props) {
                     id="assignment-deadline"
                     type="datetime-local"
                     required
-                    min={minimumDeadline}
-                    max={maximumDeadline}
+                    min={deadlineBounds.minimum}
+                    max={deadlineBounds.maximum}
                     value={deadline}
                     onChange={(event) => setDeadline(event.target.value)}
                     disabled={submitting}
@@ -294,25 +304,23 @@ export default function BuatTugas({ divisionName }: Props) {
               </div>
 
               <div className="flex flex-col-reverse gap-3 border-t border-slate-100 p-6 sm:flex-row sm:justify-end">
-                <button
+                <PicButton variant="secondary"
                   type="button"
                   disabled={submitting}
                   onClick={() => {
                     setIsOpen(false);
                     resetForm();
                   }}
-                  className="rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50"
                 >
                   Batal
-                </button>
+                </PicButton>
 
-                <button
+                <PicButton variant="primary"
                   type="submit"
                   disabled={submitting}
-                  className="rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {submitting ? "Menyimpan..." : "Simpan Tugas"}
-                </button>
+                </PicButton>
               </div>
             </form>
           </div>

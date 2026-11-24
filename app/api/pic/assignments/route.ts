@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
     const title =
       typeof payload.title === "string" ? payload.title.trim() : "";
 
-    const module =
+    const assignmentModule =
       typeof payload.module === "string" ? payload.module.trim() : "";
 
     const description =
@@ -101,9 +101,9 @@ export async function POST(request: NextRequest) {
     }
 
     if (
-      !module ||
-      module.length > 100 ||
-      /[\u0000-\u001F\u007F]/.test(module)
+      !assignmentModule ||
+      assignmentModule.length > 100 ||
+      /[\u0000-\u001F\u007F]/.test(assignmentModule)
     ) {
       return NextResponse.json(
         { error: "Modul wajib diisi dan maksimal 100 karakter." },
@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
       "create_assignment",
       {
         p_title: title,
-        p_module: module,
+        p_module: assignmentModule,
         p_description: description || null,
         p_deadline: new Date(deadline).toISOString(),
       }

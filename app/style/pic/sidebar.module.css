@@ -1,0 +1,406 @@
+/* =========================================
+   CLASSHUB PIC SIDEBAR
+   Visual mengikuti sidebar Peserta
+   ========================================= */
+
+.sidebar {
+  box-sizing: border-box;
+  position: sticky;
+  top: 16px;
+  display: flex;
+  flex: 0 0 245px;
+  flex-direction: column;
+  width: 245px;
+  min-width: 245px;
+  height: calc(100vh - 32px);
+  margin: 16px 0 16px 16px;
+  padding: 25px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 22px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.48),
+    rgba(255, 255, 255, 0.22)
+  );
+  box-shadow:
+    0 20px 50px rgba(75, 95, 190, 0.10),
+    0 4px 12px rgba(75, 95, 190, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  z-index: 30;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 7px 34px;
+  color: #17213d;
+  font-size: 22px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brandMark {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #7188ff, #526dff);
+  box-shadow: 0 6px 16px rgba(82, 109, 255, 0.24);
+}
+
+.brandMark svg {
+  width: 27px;
+  height: 27px;
+}
+
+.brandText {
+  white-space: nowrap;
+}
+
+.menuCaption {
+  margin: 0;
+  padding: 0 12px 17px;
+  color: #8994b3;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menuItem {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  gap: 15px;
+  padding: 0 15px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  color: #65718f;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.menuItem:not(.menuItemDisabled):hover {
+  border-color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.38);
+  color: #526dff;
+  box-shadow: 0 4px 12px rgba(82, 109, 255, 0.05);
+}
+
+.menuItemActive {
+  border-color: rgba(255, 255, 255, 0.65);
+  background: linear-gradient(
+    135deg,
+    rgba(82, 109, 255, 0.16),
+    rgba(143, 157, 255, 0.10)
+  );
+  color: #435ce8;
+  font-weight: 800;
+  box-shadow:
+    0 5px 15px rgba(82, 109, 255, 0.07),
+    inset 0 1px 1px rgba(255, 255, 255, 0.65);
+}
+
+.menuItemDisabled {
+  color: #65718f;
+  cursor: not-allowed;
+  opacity: 0.82;
+}
+
+.menuItem svg {
+  width: 23px;
+  height: 23px;
+  flex: 0 0 23px;
+  stroke-width: 2.3;
+}
+
+.sidebarContent {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.sidebarFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.roleCard {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.38);
+}
+
+.roleIndicator {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  border-radius: 50%;
+  background: #32b98a;
+  box-shadow: 0 0 0 4px rgba(50, 185, 138, 0.12);
+}
+
+.roleTitle {
+  margin: 0;
+  color: #17213d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.roleDescription {
+  margin: 3px 0 0;
+  color: #7783a4;
+  font-size: 11px;
+}
+
+.mobileToggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.48);
+  color: #526dff;
+  box-shadow:
+    0 5px 14px rgba(75, 95, 190, 0.07),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+}
+
+@media (max-width: 850px) {
+  .sidebar {
+    flex-basis: 205px;
+    width: 205px;
+    min-width: 205px;
+    padding: 21px 11px;
+  }
+
+  .brand {
+    gap: 10px;
+    font-size: 19px;
+  }
+
+  .brandMark {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+  }
+
+  .menuItem {
+    min-height: 46px;
+    gap: 9px;
+    padding: 0 9px;
+    font-size: 12px;
+  }
+
+  .menuItem svg {
+    width: 21px;
+    height: 21px;
+    flex-basis: 21px;
+  }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    position: relative;
+    top: auto;
+    z-index: 500;
+    flex: 0 0 auto;
+    align-self: stretch;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    margin: 10px 10px 0;
+    padding: 12px 14px;
+    gap: 0;
+    overflow: visible;
+    border-radius: 18px;
+  }
+
+  .sidebarHeader {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .brand {
+    gap: 11px;
+    padding: 0 3px;
+    font-size: 20px;
+  }
+
+  .brandMark {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+  }
+
+  .mobileToggle {
+    display: inline-flex;
+  }
+
+  .sidebarContent {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: 0;
+    z-index: 600;
+    display: none;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 0;
+    padding: 17px;
+    border: 1px solid rgba(255, 255, 255, 0.96);
+    border-radius: 18px;
+    background: linear-gradient(
+      145deg,
+      rgba(250, 251, 255, 0.98),
+      rgba(242, 245, 255, 0.96)
+    );
+    box-shadow:
+      0 22px 55px rgba(65, 83, 160, 0.18),
+      0 6px 18px rgba(65, 83, 160, 0.08),
+      inset 0 1px 2px rgba(255, 255, 255, 1);
+    backdrop-filter: blur(32px) saturate(160%);
+    -webkit-backdrop-filter: blur(32px) saturate(160%);
+    max-height: calc(100dvh - 120px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .sidebarOpen .sidebarContent {
+    display: flex;
+  }
+
+  .menuCaption {
+    padding: 0 10px 14px;
+  }
+
+  .navigation {
+    gap: 8px;
+  }
+
+  .menuItem {
+    width: 100%;
+    min-height: 49px;
+    flex: 0 0 auto;
+    gap: 14px;
+    padding: 0 14px;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+
+  .menuItemActive {
+    border-color: rgba(82, 109, 255, 0.12);
+    background: rgba(82, 109, 255, 0.12);
+  }
+
+  .sidebarFooter {
+    margin-top: 14px;
+    padding-top: 13px;
+    border-top-color: rgba(112, 130, 190, 0.16);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menuItem {
+    transition: none;
+  }
+}
+
+
+/* PIC GLASS SYNC - Sidebar */
+.sidebar {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.14),
+    rgba(255, 255, 255, 0.10)
+  );
+  box-shadow:
+    0 20px 50px rgba(75, 95, 190, 0.035),
+    0 4px 12px rgba(75, 95, 190, 0.02),
+    inset 0 1px 1px rgba(255, 255, 255, 0.68),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+}
+
+.menuItem:not(.menuItemDisabled):hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.20);
+  box-shadow: 0 4px 12px rgba(82, 109, 255, 0.035);
+}
+
+.roleCard {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.mobileToggle {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 5px 14px rgba(75, 95, 190, 0.035),
+    inset 0 1px 1px rgba(255, 255, 255, 0.68);
+}
+
+
+/* VINIX7 PIC - SIDEBAR GLASS STANDARD */
+.sidebar {
+  background: linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.10));
+  border-color: rgba(255,255,255,.28);
+  box-shadow: 0 6px 22px rgba(83,102,190,.035);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+}
+
+.roleCard {
+  background: rgba(255,255,255,.14);
+  border-color: rgba(255,255,255,.28);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
+}
+
+

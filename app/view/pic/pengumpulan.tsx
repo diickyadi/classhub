@@ -1,6 +1,11 @@
 "use client";
 
+import PicSelect from "@/app/assets/components/pic/select";
+
+import PicButton from "@/app/assets/components/pic/button";
+
 import { useCallback, useEffect, useMemo, useState } from "react";
+import styles from "@/app/style/pic/dashboard.module.css";
 
 type Assignment = {
   id: number;
@@ -62,12 +67,6 @@ function formatFileSize(bytes: number) {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
 }
 
-function localDateTimeMin() {
-  const now = new Date();
-  const offset = now.getTimezoneOffset() * 60000;
-  return new Date(now.getTime() - offset).toISOString().slice(0, 16);
-}
-
 export default function Pengumpulan() {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
@@ -105,8 +104,52 @@ export default function Pengumpulan() {
   }, []);
 
   useEffect(() => {
-    void loadSubmissions();
-  }, [loadSubmissions]);
+    let cancelled = false;
+
+    async function fetchInitialSubmissions() {
+      try {
+        const response = await fetch("/api/pic/submissions", {
+          method: "GET",
+          cache: "no-store",
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            result.error || "Gagal mengambil data pengumpulan."
+          );
+        }
+
+        if (!cancelled) {
+          setSubmissions(result.submissions ?? []);
+        }
+      } catch (loadError) {
+        if (!cancelled) {
+          setError(
+            loadError instanceof Error
+              ? loadError.message
+              : "Tidak dapat menghubungi server."
+          );
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      }
+    }
+
+    void fetchInitialSubmissions();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const now = new Date();
+  const minimumPermissionDate = new Date(
+    now.getTime() - now.getTimezoneOffset() * 60000
+  ).toISOString().slice(0, 16);
 
   const filteredSubmissions = useMemo(() => {
     const keyword = search.trim().toLowerCase();
@@ -220,7 +263,7 @@ export default function Pengumpulan() {
   }
 
   return (
-    <section className="mt-10 space-y-5">
+    <section className={styles.submissionSection}>
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h2 className="text-xl font-bold text-slate-900">
@@ -231,14 +274,13 @@ export default function Pengumpulan() {
           </p>
         </div>
 
-        <button
+        <PicButton variant="secondary"
           type="button"
           onClick={() => void loadSubmissions()}
           disabled={loading}
-          className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50"
         >
           {loading ? "Memuat..." : "↻ Muat ulang"}
-        </button>
+        </PicButton>
       </div>
 
       {notice && (
@@ -257,13 +299,12 @@ export default function Pengumpulan() {
         >
           <div className="flex items-start justify-between gap-3">
             <span>{error}</span>
-            <button
+            <PicButton variant="ghost"
               type="button"
               onClick={() => setError("")}
-              className="font-semibold"
             >
               ×
-            </button>
+            </PicButton>
           </div>
         </div>
       )}
@@ -300,17 +341,19 @@ export default function Pengumpulan() {
           className="min-w-0 flex-1 rounded-lg border border-slate-300 px-4 py-3 text-sm text-slate-900 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
         />
 
-        <select
+        <PicSelect
+          ariaLabel="Filter status pengumpulan"
+          width="auto"
           value={filterStatus}
-          onChange={(event) =>
-            setFilterStatus(event.target.value as FilterStatus)
+          onValueChange={(value) =>
+            setFilterStatus(value as FilterStatus)
           }
-          className="rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-700 outline-none focus:border-blue-500"
-        >
-          <option value="all">Semua status</option>
-          <option value="submitted">Tepat waktu</option>
-          <option value="late">Terlambat</option>
-        </select>
+          options={[
+            { value: "all", label: "Semua status" },
+            { value: "submitted", label: "Tepat waktu" },
+            { value: "late", label: "Terlambat" },
+          ]}
+        />
       </div>
 
       <div className="space-y-4">
@@ -386,26 +429,24 @@ export default function Pengumpulan() {
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                      <button
+                      <PicButton variant="primary"
                         type="button"
                         onClick={() => void downloadFile(submission.id)}
                         disabled={busyId === submission.id}
-                        className="rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 disabled:opacity-50"
                       >
                         {busyId === submission.id
                           ? "Memproses..."
                           : "↓ Download"}
-                      </button>
+                      </PicButton>
 
-                      <button
+                      <PicButton variant="secondary"
                         type="button"
                         onClick={() =>
                           setExpandedId(isExpanded ? null : submission.id)
                         }
-                        className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
                       >
                         {isExpanded ? "Tutup detail" : "Detail"}
-                      </button>
+                      </PicButton>
                     </div>
                   </div>
 
@@ -472,16 +513,15 @@ export default function Pengumpulan() {
                                 </p>
                               </div>
 
-                              <button
+                              <PicButton variant="primary" className="shrink-0"
                                 type="button"
                                 onClick={() =>
                                   void downloadFile(submission.id, revision.id)
                                 }
                                 disabled={busyId === submission.id}
-                                className="shrink-0 rounded-lg border border-blue-200 px-3 py-2 text-sm font-semibold text-blue-700 hover:bg-blue-50 disabled:opacity-50"
                               >
                                 ↓ Download revisi
-                              </button>
+                              </PicButton>
                             </div>
                           ))}
                         </div>
@@ -512,7 +552,7 @@ export default function Pengumpulan() {
                       <div className="mt-3 flex flex-col gap-3 sm:flex-row">
                         <input
                           type="datetime-local"
-                          min={localDateTimeMin()}
+                          min={minimumPermissionDate}
                           value={permissionDates[submission.id] ?? ""}
                           onChange={(event) =>
                             setPermissionDates((current) => ({
@@ -523,18 +563,17 @@ export default function Pengumpulan() {
                           className="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-800 outline-none focus:border-blue-500"
                         />
 
-                        <button
+                        <PicButton variant="warning"
                           type="button"
                           onClick={() =>
                             void grantRevisionPermission(submission)
                           }
                           disabled={busyId === submission.id}
-                          className="rounded-lg bg-amber-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-amber-700 disabled:opacity-50"
                         >
                           {busyId === submission.id
                             ? "Memproses..."
                             : "Simpan Izin Revisi"}
-                        </button>
+                        </PicButton>
                       </div>
 
                       <p className="mt-2 text-xs text-slate-500">
