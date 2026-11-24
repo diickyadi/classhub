@@ -1,13 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 const IDLE_TIMEOUT_MS = 20 * 60 * 1000;
 
 export default function IdleTimeout() {
-  const router = useRouter();
 
   useEffect(() => {
     const supabase = createClient();
@@ -67,8 +65,7 @@ export default function IdleTimeout() {
         }
 
         sessionActive = false;
-        router.replace("/");
-        router.refresh();
+        window.location.replace("/");
       } catch (error) {
         console.error("Kesalahan logout otomatis:", error);
         logoutInProgress = false;
@@ -84,7 +81,7 @@ export default function IdleTimeout() {
 
       subscription.unsubscribe();
     };
-  }, [router]);
+  }, []);
 
   return null;
 }
