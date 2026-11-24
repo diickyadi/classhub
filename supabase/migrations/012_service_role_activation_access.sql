@@ -15,8 +15,8 @@ GRANT SELECT
 ON TABLE public.profiles
 TO service_role;
 
--- Allow the activation API to modify account status only.
-GRANT UPDATE (account_status)
+-- Allow activation and first-password-change APIs to update their required columns.
+GRANT UPDATE (account_status, must_change_password)
 ON TABLE public.profiles
 TO service_role;
 
