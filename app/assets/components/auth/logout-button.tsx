@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
 export default function LogoutButton() {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleLogout() {
@@ -23,8 +21,7 @@ export default function LogoutButton() {
         return;
       }
 
-      router.replace("/");
-      router.refresh();
+      window.location.replace("/");
     } catch (error) {
       console.error("Terjadi kesalahan saat logout:", error);
       setIsLoading(false);

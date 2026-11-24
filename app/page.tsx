@@ -194,7 +194,11 @@ export default function Home() {
               <p>Kelola tugas dan progresmu dengan lebih mudah.</p>
             </div>
 
-            <form className="login-form" onSubmit={handleLogin}>
+            <form
+              className="login-form"
+              onSubmit={handleLogin}
+              autoComplete="off"
+            >
               <div className="login-role-wrapper">
                 <span className="login-label">Masuk sebagai</span>
 
@@ -268,7 +272,7 @@ export default function Home() {
                   <input
                     id="email"
                     type="email"
-                    autoComplete="email"
+                    autoComplete="off"
                     required
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
@@ -303,7 +307,7 @@ export default function Home() {
                   <input
                     id="password"
                     type={showPassword ? "text" : "password"}
-                    autoComplete="current-password"
+                    autoComplete="off"
                     required
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
