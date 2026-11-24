@@ -1,10 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap");
-
 /* GLOBAL TYPOGRAPHY */
 .ch-peserta-dashboard,
-.ch-peserta-dashboard button,
-.ch-peserta-dashboard input,
-.ch-peserta-dashboard select,
-.ch-peserta-dashboard textarea {
-  font-family: "DM Sans", Arial, sans-serif;
+.ch-peserta-dashboard * {
+  font-family: var(--font-family-base);
 }
