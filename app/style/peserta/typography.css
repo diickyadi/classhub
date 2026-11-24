@@ -1,8 +1,5 @@
 /* GLOBAL TYPOGRAPHY */
 .ch-peserta-dashboard,
-.ch-peserta-dashboard button,
-.ch-peserta-dashboard input,
-.ch-peserta-dashboard select,
-.ch-peserta-dashboard textarea {
+.ch-peserta-dashboard * {
   font-family: var(--font-family-base);
 }

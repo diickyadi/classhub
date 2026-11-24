@@ -2,21 +2,12 @@
 .ch-peserta-task-panel {
   margin-top: 24px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: var(--radius-lg);
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.62),
-      rgba(255, 255, 255, 0.28)
-    );
-  box-shadow:
-    0 14px 38px rgba(83, 102, 190, 0.09),
-    0 4px 12px rgba(83, 102, 190, 0.04),
-    inset 0 1px 1px rgba(255, 255, 255, 0.95),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(26px) saturate(180%);
-  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  background: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 6px 22px rgba(83, 102, 190, 0.05);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
 }
 
 .ch-peserta-task-panel-header {

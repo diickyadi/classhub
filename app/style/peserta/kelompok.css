@@ -2,20 +2,17 @@
 .ch-peserta-group-panel {
   margin-top: 24px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: var(--radius-lg);
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.78),
-    rgba(235, 240, 255, 0.62) 55%,
-    rgba(226, 232, 255, 0.50)
+    rgba(255, 255, 255, 0.14),
+    rgba(235, 240, 255, 0.10) 55%,
+    rgba(226, 232, 255, 0.08)
   );
-  box-shadow:
-    0 16px 42px rgba(82, 109, 255, 0.09),
-    0 5px 15px rgba(117, 132, 220, 0.05),
-    inset 0 1px 1px rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(28px) saturate(180%);
-  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow: 0 6px 22px rgba(83, 102, 190, 0.035);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
 }
 
 .ch-peserta-group-panel-header {
