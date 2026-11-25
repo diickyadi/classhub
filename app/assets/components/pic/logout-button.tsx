@@ -27,7 +27,7 @@ export default function PicLogoutButton() {
         return;
       }
 
-      window.location.replace("/");
+      window.location.replace("/?role=PIC");
     } catch (error) {
       console.error("Logout PIC gagal:", error);
       setErrorMessage("Terjadi kesalahan saat logout.");
