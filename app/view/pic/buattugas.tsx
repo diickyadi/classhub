@@ -1,6 +1,7 @@
 "use client";
 
 import PicButton from "@/app/assets/components/pic/button";
+import KelolaTugasList from "@/app/view/pic/kelolatugaslist";
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
@@ -327,6 +328,7 @@ export default function BuatTugas({ divisionName }: Props) {
           </div>
         </div>
       ), document.body)}
+      <KelolaTugasList />
     </section>
   );
 }
