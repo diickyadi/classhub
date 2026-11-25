@@ -190,3 +190,113 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+
+export async function GET() {
+  try {
+    const supabase = await createClient();
+
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+      return NextResponse.json(
+        { error: "Silakan login terlebih dahulu." },
+        { status: 401 }
+      );
+    }
+
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("role, account_status, must_change_password")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (profileError) {
+      console.error("PIC assignment profile lookup failed:", profileError);
+      return NextResponse.json(
+        { error: "Gagal memverifikasi akun." },
+        { status: 500 }
+      );
+    }
+
+    if (
+      !profile ||
+      profile.role !== "PIC" ||
+      profile.account_status !== "active"
+    ) {
+      return NextResponse.json(
+        { error: "Akses hanya tersedia untuk PIC aktif." },
+        { status: 403 }
+      );
+    }
+
+    if (profile.must_change_password) {
+      return NextResponse.json(
+        { error: "Ganti password terlebih dahulu." },
+        { status: 403 }
+      );
+    }
+
+    const { data: picAssignment, error: assignmentError } = await supabase
+      .from("division_pic_assignments")
+      .select("division_id")
+      .eq("pic_user_id", user.id)
+      .is("ended_at", null)
+      .maybeSingle();
+
+    if (assignmentError || !picAssignment?.division_id) {
+      return NextResponse.json(
+        { error: "Penugasan divisi PIC tidak ditemukan." },
+        { status: 403 }
+      );
+    }
+
+    const { data: division, error: divisionError } = await supabase
+      .from("divisions")
+      .select("id, name, is_active")
+      .eq("id", picAssignment.division_id)
+      .maybeSingle();
+
+    if (divisionError || !division?.is_active) {
+      return NextResponse.json(
+        { error: "Divisi tidak aktif atau tidak ditemukan." },
+        { status: 403 }
+      );
+    }
+
+    const { data: assignments, error: assignmentsError } = await supabase
+      .from("assignments")
+      .select(
+        "id, title, module, description, deadline, created_at, updated_at"
+      )
+      .eq("division_id", division.id)
+      .order("created_at", { ascending: false });
+
+    if (assignmentsError) {
+      console.error("PIC assignments lookup failed:", assignmentsError);
+      return NextResponse.json(
+        { error: "Gagal mengambil daftar tugas." },
+        { status: 500 }
+      );
+    }
+
+      return NextResponse.json({
+    division: {
+      id: division.id,
+      name: division.name,
+    },
+    assignments: assignments ?? [],
+    serverNow: new Date().toISOString(),
+  });
+  } catch (error) {
+    console.error("Get PIC assignments error:", error);
+
+    return NextResponse.json(
+      { error: "Terjadi kesalahan saat mengambil daftar tugas." },
+      { status: 500 }
+    );
+  }
+}

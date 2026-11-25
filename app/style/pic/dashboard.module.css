@@ -642,10 +642,9 @@
 /* Kelola kelompok */
 
 .groupCard {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  display: block;
+  width: 100%;
+  min-width: 0;
   margin-top: 27px;
   padding: 21px 24px;
   border: 1px solid rgba(255, 255, 255, 0.9);
@@ -1001,6 +1000,18 @@
 }
 
 
+
+/* VINIX7 PIC - GLASS REFINEMENT KELOLA KELOMPOK */
+.dashboardShell .groupCard {
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  box-shadow:
+    0 8px 30px rgba(83, 102, 190, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+}
+
 /* VINIX7 PIC - DASHBOARD GLASS STANDARD */
 .dashboardShell .statCard,
 .dashboardShell .groupCard,
@@ -1041,4 +1052,54 @@
 .sectionTitle,
 .statValue {
   font-weight: 700;
+}
+
+
+/* =========================================================
+   KELola KELOMPOK - NATURAL PAGE SCROLL
+   Hanya berlaku untuk komponen Kelola Kelompok
+   ========================================================= */
+
+.groupCard {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+
+.groupCard > div:first-child {
+  display: flex;
+  flex: initial;
+  justify-content: flex-end;
+}
+
+.groupListSection {
+  display: block;
+  width: 100%;
+  min-height: 0;
+  margin-top: 24px;
+}
+
+.groupListScroll {
+  display: block;
+  width: 100%;
+  max-height: none;
+  min-height: 0;
+  overflow: visible;
+  padding: 0;
+}
+
+@media (max-width: 760px) {
+  .groupCard {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .groupListSection {
+    margin-top: 18px;
+  }
 }

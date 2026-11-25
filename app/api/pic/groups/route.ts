@@ -4,6 +4,196 @@ import { createClient } from "@/lib/supabase/server";
 const UUID_REGEX =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
+
+export async function GET() {
+  try {
+    const supabase = await createClient();
+
+    // 1. Validasi autentikasi PIC
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+      return Response.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    // 2. Validasi profil PIC
+    const { data: profile, error: profileError } = await supabase
+      .from("profiles")
+      .select("role, account_status, must_change_password")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (profileError) {
+      console.error("Profile error:", profileError);
+      return Response.json(
+        { error: "Gagal memeriksa profil PIC" },
+        { status: 500 }
+      );
+    }
+
+    if (
+      !profile ||
+      profile.role !== "PIC" ||
+      profile.account_status !== "active" ||
+      profile.must_change_password
+    ) {
+      return Response.json(
+        { error: "Akses PIC tidak valid" },
+        { status: 403 }
+      );
+    }
+
+    // 3. Ambil divisi aktif PIC
+    const { data: assignment, error: assignmentError } = await supabase
+      .from("division_pic_assignments")
+      .select("division_id, divisions!inner(id, is_active)")
+      .eq("pic_user_id", user.id)
+      .is("ended_at", null)
+      .maybeSingle();
+
+    if (assignmentError) {
+      console.error("Assignment error:", assignmentError);
+      return Response.json(
+        { error: "Gagal mengambil divisi PIC" },
+        { status: 500 }
+      );
+    }
+
+    const division = Array.isArray(assignment?.divisions)
+      ? assignment.divisions[0]
+      : assignment?.divisions;
+
+    if (!assignment || !division?.is_active) {
+      return Response.json(
+        { error: "PIC tidak memiliki divisi aktif" },
+        { status: 403 }
+      );
+    }
+
+    const divisionId = assignment.division_id;
+
+    // 4. Ambil kelompok yang belum diarsipkan
+    const { data: groups, error: groupsError } = await supabase
+      .from("groups")
+      .select("id, name, created_at")
+      .eq("division_id", divisionId)
+      .is("archived_at", null)
+      .order("created_at", { ascending: false });
+
+    if (groupsError) {
+      console.error("Groups error:", groupsError);
+      return Response.json(
+        { error: "Gagal mengambil data kelompok" },
+        { status: 500 }
+      );
+    }
+
+    if (!groups || groups.length === 0) {
+      return Response.json({
+        groups: [],
+        summary: {
+          totalGroups: 0,
+          totalMembers: 0,
+        },
+      });
+    }
+
+    // 5. Ambil anggota aktif setiap kelompok
+    const groupIds = groups.map((group) => group.id);
+
+    const { data: memberships, error: membersError } = await supabase
+      .from("group_members")
+      .select("group_id, user_id, is_leader")
+      .in("group_id", groupIds)
+      .is("left_at", null);
+
+    if (membersError) {
+      console.error("Members error:", membersError);
+      return Response.json(
+        { error: "Gagal mengambil anggota kelompok" },
+        { status: 500 }
+      );
+    }
+
+    const memberIds = [
+      ...new Set((memberships || []).map((member) => member.user_id)),
+    ];
+
+    // 6. Ambil nama anggota dari profiles
+    let profiles: { id: string; full_name: string | null }[] = [];
+
+    if (memberIds.length > 0) {
+      const { data: profileData, error: membersProfileError } =
+        await supabase
+          .from("profiles")
+          .select("id, full_name")
+          .in("id", memberIds);
+
+      if (membersProfileError) {
+        console.error("Member profiles error:", membersProfileError);
+        return Response.json(
+          { error: "Gagal mengambil profil anggota" },
+          { status: 500 }
+        );
+      }
+
+      profiles = profileData || [];
+    }
+
+    // 7. Susun data kelompok
+    const groupsWithMembers = groups.map((group) => {
+      const groupMemberships = (memberships || []).filter(
+        (member) => member.group_id === group.id
+      );
+
+      const members = groupMemberships.map((membership) => {
+        const memberProfile = profiles.find(
+          (profile) => profile.id === membership.user_id
+        );
+
+        return {
+          id: membership.user_id,
+          fullName: memberProfile?.full_name || "Nama tidak tersedia",
+          isLeader: membership.is_leader,
+        };
+      });
+
+      return {
+        id: group.id,
+        name: group.name,
+        createdAt: group.created_at,
+        memberCount: members.length,
+        leader: members.find((member) => member.isLeader) || null,
+        members,
+      };
+    });
+
+    return Response.json({
+      groups: groupsWithMembers,
+      summary: {
+        totalGroups: groupsWithMembers.length,
+        totalMembers: groupsWithMembers.reduce(
+          (total, group) => total + group.memberCount,
+          0
+        ),
+      },
+    });
+  } catch (error) {
+    console.error("GET /api/pic/groups error:", error);
+
+    return Response.json(
+      { error: "Terjadi kesalahan pada server" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient();
