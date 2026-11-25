@@ -1,6 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+
+type ChangePasswordRequest = {
+  currentPassword?: unknown;
+  password?: unknown;
+  confirmPassword?: unknown;
+};
+
+function jsonError(error: string, status: number, code?: string) {
+  return NextResponse.json(
+    { error, ...(code ? { code } : {}) },
+    { status }
+  );
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,60 +26,151 @@ export async function POST(request: NextRequest) {
     } = await supabase.auth.getUser();
 
     if (authError || !user) {
-      return NextResponse.json(
-        { error: "Silakan login terlebih dahulu." },
-        { status: 401 }
-      );
+      return jsonError("Silakan login terlebih dahulu.", 401);
     }
 
     const { data: profile, error: profileError } = await supabase
       .from("profiles")
-      .select("account_status, must_change_password")
+      .select("role, account_status, must_change_password")
       .eq("id", user.id)
       .maybeSingle();
 
     if (profileError) {
       console.error("Change password profile lookup failed:", profileError);
-
-      return NextResponse.json(
-        { error: "Gagal memverifikasi profil akun." },
-        { status: 500 }
-      );
+      return jsonError("Gagal memverifikasi profil akun.", 500);
     }
 
     if (!profile || profile.account_status !== "active") {
-      return NextResponse.json(
-        { error: "Akun tidak aktif atau tidak ditemukan." },
-        { status: 403 }
+      return jsonError("Akun tidak aktif atau tidak ditemukan.", 403);
+    }
+
+    if (profile.role !== "PESERTA" && profile.role !== "PIC") {
+      return jsonError(
+        "Role akun tidak diizinkan mengganti password melalui halaman ini.",
+        403
       );
     }
 
     if (!profile.must_change_password) {
-      return NextResponse.json(
-        { error: "Akun tidak sedang diwajibkan mengganti password." },
-        { status: 400 }
+      return jsonError(
+        "Akun tidak sedang diwajibkan mengganti password.",
+        400
       );
     }
 
-    let body: { password?: unknown };
+    let body: unknown;
 
     try {
       body = await request.json();
     } catch {
-      return NextResponse.json(
-        { error: "Format permintaan tidak valid." },
-        { status: 400 }
+      return jsonError("Format permintaan tidak valid.", 400);
+    }
+
+    if (
+      typeof body !== "object" ||
+      body === null ||
+      Array.isArray(body)
+    ) {
+      return jsonError("Format permintaan tidak valid.", 400);
+    }
+
+    const requestBody = body as ChangePasswordRequest;
+    const password =
+      typeof requestBody.password === "string"
+        ? requestBody.password
+        : "";
+
+    if (password.length < 8 || password.length > 128) {
+      return jsonError(
+        "Password baru harus terdiri dari 8 sampai 128 karakter.",
+        400
       );
     }
 
-    const password =
-      typeof body.password === "string" ? body.password : "";
+    if (profile.role === "PESERTA") {
+      const currentPassword =
+        typeof requestBody.currentPassword === "string"
+          ? requestBody.currentPassword
+          : "";
 
-    if (password.length < 8 || password.length > 128) {
-      return NextResponse.json(
-        { error: "Password baru harus terdiri dari 8 sampai 128 karakter." },
-        { status: 400 }
+      const confirmPassword =
+        typeof requestBody.confirmPassword === "string"
+          ? requestBody.confirmPassword
+          : "";
+
+      if (!currentPassword) {
+        return jsonError("Password lama wajib diisi.", 400);
+      }
+
+      if (!confirmPassword) {
+        return jsonError("Konfirmasi password baru wajib diisi.", 400);
+      }
+
+      if (password !== confirmPassword) {
+        return jsonError("Konfirmasi password baru tidak cocok.", 400);
+      }
+
+      if (currentPassword === password) {
+        return jsonError(
+          "Password baru harus berbeda dari password lama.",
+          400
+        );
+      }
+
+      if (!user.email) {
+        return jsonError(
+          "Email akun tidak ditemukan. Silakan hubungi administrator.",
+          400
+        );
+      }
+
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+      const publishableKey =
+        process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+
+      if (!supabaseUrl || !publishableKey) {
+        console.error(
+          "Supabase public environment variables are missing."
+        );
+
+        return jsonError(
+          "Konfigurasi autentikasi server belum tersedia.",
+          500
+        );
+      }
+
+      const verificationClient = createSupabaseClient(
+        supabaseUrl,
+        publishableKey,
+        {
+          auth: {
+            autoRefreshToken: false,
+            persistSession: false,
+            detectSessionInUrl: false,
+          },
+        }
       );
+
+      const {
+        data: verificationData,
+        error: verificationError,
+      } = await verificationClient.auth.signInWithPassword({
+        email: user.email,
+        password: currentPassword,
+      });
+
+      const currentPasswordIsValid =
+        !verificationError &&
+        verificationData.user?.id === user.id;
+
+      if (!currentPasswordIsValid) {
+        return jsonError(
+          "Password lama tidak sesuai. Masukkan password yang saat ini aktif pada akun.",
+          400
+        );
+      }
+    } else if (profile.role === "PIC") {
+      // Alur PIC dipertahankan: hanya memerlukan password baru.
     }
 
     const { error: passwordError } = await supabase.auth.updateUser({
@@ -75,9 +180,9 @@ export async function POST(request: NextRequest) {
     if (passwordError) {
       console.error("Supabase password update failed:", passwordError);
 
-      return NextResponse.json(
-        { error: "Gagal mengganti password. Silakan coba kembali." },
-        { status: 400 }
+      return jsonError(
+        "Gagal mengganti password. Silakan periksa kembali data dan coba lagi.",
+        400
       );
     }
 
@@ -98,14 +203,26 @@ export async function POST(request: NextRequest) {
         updateError
       );
 
-      return NextResponse.json(
-        {
-          error:
-            "Password berhasil diubah, tetapi penyelesaian akun belum berhasil. Silakan coba lagi atau hubungi administrator.",
-          code: "PASSWORD_UPDATED_PROFILE_PENDING",
-        },
-        { status: 500 }
-      );
+      const {
+        data: finalProfile,
+        error: finalProfileError,
+      } = await admin
+        .from("profiles")
+        .select("must_change_password")
+        .eq("id", user.id)
+        .maybeSingle();
+
+      if (
+        finalProfileError ||
+        !finalProfile ||
+        finalProfile.must_change_password
+      ) {
+        return jsonError(
+          "Password mungkin sudah berhasil diperbarui, tetapi status akun belum selesai diperbarui. Coba kembali menggunakan password yang saat ini aktif sebagai password lama, lalu tentukan password baru yang berbeda.",
+          500,
+          "PASSWORD_UPDATED_PROFILE_PENDING"
+        );
+      }
     }
 
     return NextResponse.json(
@@ -115,9 +232,6 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Change password error:", error);
 
-    return NextResponse.json(
-      { error: "Terjadi kesalahan pada server." },
-      { status: 500 }
-    );
+    return jsonError("Terjadi kesalahan pada server.", 500);
   }
 }

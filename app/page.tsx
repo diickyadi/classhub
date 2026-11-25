@@ -89,7 +89,11 @@ export default function Home() {
       }
 
       if (profile.must_change_password) {
-        router.replace("/change-password");
+        router.replace(
+          profile.role === "PESERTA"
+            ? "/dashboard/peserta/password"
+            : "/change-password"
+        );
         router.refresh();
         return;
       }
