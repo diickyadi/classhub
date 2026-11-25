@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import BrandLogo from "@/app/assets/components/common/brand-logo";
@@ -17,6 +17,15 @@ export default function Home() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    if (searchParams.get("role") === "PIC") {
+      setRole("PIC");
+      window.history.replaceState(window.history.state, "", "/");
+    }
+  }, []);
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

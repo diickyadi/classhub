@@ -1,13 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { LogOut, X } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "@/app/style/pic/dashboard.module.css";
 
 export default function PicLogoutButton() {
-  const router = useRouter();
 
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,8 +27,7 @@ export default function PicLogoutButton() {
         return;
       }
 
-      router.replace("/");
-      router.refresh();
+      window.location.replace("/?role=PIC");
     } catch (error) {
       console.error("Logout PIC gagal:", error);
       setErrorMessage("Terjadi kesalahan saat logout.");
