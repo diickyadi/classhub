@@ -6,7 +6,6 @@ export const instant = false;
 export default async function DashboardPage() {
   const supabase = await createClient();
 
-  // Periksa sesi pengguna.
   const {
     data: { user },
     error: authError,
@@ -16,7 +15,6 @@ export default async function DashboardPage() {
     redirect("/");
   }
 
-  // Ambil role dari profil pengguna yang sedang login.
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
     .select("role, account_status, must_change_password")
@@ -31,11 +29,14 @@ export default async function DashboardPage() {
     redirect("/");
   }
 
-  if (profile.must_change_password) {
+  if (profile.role === "PESERTA" && profile.must_change_password) {
+    redirect("/dashboard/peserta/password");
+  }
+
+  if (profile.role === "PIC" && profile.must_change_password) {
     redirect("/change-password");
   }
 
-  // Arahkan pengguna sesuai role.
   if (profile.role === "PIC") {
     redirect("/dashboard/pic");
   }

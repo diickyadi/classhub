@@ -5,13 +5,17 @@ import PasswordForm from "@/app/assets/components/peserta/password/password-form
 export default function PesertaPasswordView() {
   return (
     <div className="ch-peserta-dashboard">
-      <PesertaSidebar activeItem="Password" />
+      <PesertaSidebar
+        activeItem="Password"
+        isPasswordChangeRequired={true}
+      />
 
       <main className="ch-peserta-main">
         <div className="ch-peserta-content">
-          <PesertaHeader title="Ganti Password" description="Kelola keamanan password akun ClassHub kamu." />
-
-
+          <PesertaHeader
+            title="Ganti Password"
+            description="Kelola keamanan password akun ClassHub kamu."
+          />
 
           <PasswordForm />
         </div>

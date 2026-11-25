@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { createClient } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
 
 type MessageState = {
   type: "success" | "error";
@@ -9,13 +9,17 @@ type MessageState = {
 } | null;
 
 export default function PasswordForm() {
+  const router = useRouter();
+
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<MessageState>(null);
 
-  async function handlePasswordChange(event: FormEvent<HTMLFormElement>) {
+  async function handlePasswordChange(
+    event: FormEvent<HTMLFormElement>
+  ) {
     event.preventDefault();
     setMessage(null);
 
@@ -27,10 +31,10 @@ export default function PasswordForm() {
       return;
     }
 
-    if (newPassword.length < 8) {
+    if (newPassword.length < 8 || newPassword.length > 128) {
       setMessage({
         type: "error",
-        text: "Password baru harus terdiri dari minimal 8 karakter.",
+        text: "Password baru harus terdiri dari 8 sampai 128 karakter.",
       });
       return;
     }
@@ -54,58 +58,37 @@ export default function PasswordForm() {
     setLoading(true);
 
     try {
-      const supabase = createClient();
-
-      // 1. Pastikan pengguna masih memiliki sesi login.
-      const {
-        data: { user },
-        error: userError,
-      } = await supabase.auth.getUser();
-
-      if (userError || !user?.email) {
-        setMessage({
-          type: "error",
-          text: "Sesi login tidak ditemukan. Silakan login kembali.",
-        });
-        return;
-      }
-
-      // 2. Verifikasi password lama menggunakan akun yang sedang login.
-      const { data: verifiedData, error: verificationError } =
-        await supabase.auth.signInWithPassword({
-          email: user.email,
-          password: currentPassword,
-        });
-
-      if (verificationError || !verifiedData.user) {
-        setMessage({
-          type: "error",
-          text: "Password lama yang kamu masukkan tidak sesuai.",
-        });
-        return;
-      }
-
-      // 3. Pastikan akun yang berhasil diverifikasi adalah akun yang sama.
-      if (verifiedData.user.id !== user.id) {
-        setMessage({
-          type: "error",
-          text: "Verifikasi akun gagal. Silakan login kembali.",
-        });
-        return;
-      }
-
-      // 4. Simpan password baru melalui Supabase Auth.
-      const { error: updateError } = await supabase.auth.updateUser({
-        password: newPassword,
+      const response = await fetch("/api/auth/change-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          currentPassword,
+          password: newPassword,
+          confirmPassword,
+        }),
       });
 
-      if (updateError) {
-        console.error("Password update error:", updateError);
+      const result = await response.json().catch(() => null);
 
-        setMessage({
-          type: "error",
-          text: "Password gagal diperbarui. Periksa ketentuan password dan coba kembali.",
-        });
+      if (!response.ok) {
+        if (result?.code === "PASSWORD_UPDATED_PROFILE_PENDING") {
+          setMessage({
+            type: "error",
+            text:
+              "Password mungkin sudah berhasil diperbarui, tetapi status akun belum selesai diperbarui. Jika password sudah berubah, masukkan password yang saat ini aktif pada kolom Password Lama, lalu tentukan password baru yang berbeda.",
+          });
+        } else {
+          setMessage({
+            type: "error",
+            text:
+              typeof result?.error === "string"
+                ? result.error
+                : "Password gagal diperbarui. Silakan coba kembali.",
+          });
+        }
+
         return;
       }
 
@@ -115,14 +98,19 @@ export default function PasswordForm() {
 
       setMessage({
         type: "success",
-        text: "Password berhasil diperbarui. Gunakan password baru untuk login berikutnya.",
+        text:
+          "Password berhasil diperbarui. Mengarahkan ke Dashboard...",
       });
+
+      router.replace("/dashboard/peserta");
+      router.refresh();
     } catch (error) {
-      console.error("Password change error:", error);
+      console.error("Password change request failed:", error);
 
       setMessage({
         type: "error",
-        text: "Terjadi kesalahan saat menghubungi layanan autentikasi. Silakan coba kembali.",
+        text:
+          "Terjadi kesalahan saat menghubungi server. Silakan coba kembali.",
       });
     } finally {
       setLoading(false);
@@ -170,7 +158,9 @@ export default function PasswordForm() {
             placeholder="Masukkan password awal yang diberikan oleh PIC"
             autoComplete="current-password"
             value={currentPassword}
-            onChange={(event) => setCurrentPassword(event.target.value)}
+            onChange={(event) =>
+              setCurrentPassword(event.target.value)
+            }
             disabled={loading}
             required
           />
@@ -185,9 +175,12 @@ export default function PasswordForm() {
             placeholder="Masukkan password baru (minimal 8 karakter)"
             autoComplete="new-password"
             value={newPassword}
-            onChange={(event) => setNewPassword(event.target.value)}
+            onChange={(event) =>
+              setNewPassword(event.target.value)
+            }
             disabled={loading}
             minLength={8}
+            maxLength={128}
             required
           />
         </div>
@@ -203,9 +196,12 @@ export default function PasswordForm() {
             placeholder="Ulangi password baru"
             autoComplete="new-password"
             value={confirmPassword}
-            onChange={(event) => setConfirmPassword(event.target.value)}
+            onChange={(event) =>
+              setConfirmPassword(event.target.value)
+            }
             disabled={loading}
             minLength={8}
+            maxLength={128}
             required
           />
         </div>

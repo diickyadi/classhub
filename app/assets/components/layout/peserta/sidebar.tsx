@@ -51,10 +51,12 @@ const menuItems = [
 
 type PesertaSidebarProps = {
   activeItem?: string;
+  isPasswordChangeRequired?: boolean;
 };
 
 export default function PesertaSidebar({
   activeItem = "Dashboard",
+  isPasswordChangeRequired = false,
 }: PesertaSidebarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -68,7 +70,15 @@ export default function PesertaSidebar({
         <Link
           href="/dashboard/peserta"
           className="ch-peserta-brand"
-          onClick={() => setIsMenuOpen(false)}
+          onClick={(event) => {
+            if (isPasswordChangeRequired) {
+              event.preventDefault();
+              return;
+            }
+
+            setIsMenuOpen(false);
+          }}
+          aria-disabled={isPasswordChangeRequired}
         >
           <BrandLogo width={110} />
         </Link>
@@ -101,18 +111,21 @@ export default function PesertaSidebar({
         >
           {menuItems.map((item) => {
             const isActive = activeItem === item.label;
+            const isLocked =
+              isPasswordChangeRequired && item.label !== "Password";
+
             const Icon = item.icon;
 
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setIsMenuOpen(false)}
-                className={`ch-peserta-menuItem ${
-                  isActive ? "ch-peserta-active" : ""
-                }`}
-                aria-current={isActive ? "page" : undefined}
-              >
+            const className = [
+              "ch-peserta-menuItem",
+              isActive ? "ch-peserta-active" : "",
+              isLocked ? "ch-peserta-menuItem-locked" : "",
+            ]
+              .filter(Boolean)
+              .join(" ");
+
+            const menuContent = (
+              <>
                 <Icon
                   size={23}
                   strokeWidth={2.3}
@@ -120,6 +133,40 @@ export default function PesertaSidebar({
                 />
 
                 <span>{item.label}</span>
+
+                {isLocked && (
+                  <LockKeyhole
+                    className="ch-peserta-menuLockIcon"
+                    size={17}
+                    strokeWidth={2.2}
+                    aria-hidden="true"
+                  />
+                )}
+              </>
+            );
+
+            if (isLocked) {
+              return (
+                <div
+                  key={item.href}
+                  className={className}
+                  aria-disabled="true"
+                  title="Ganti password terlebih dahulu untuk membuka menu ini."
+                >
+                  {menuContent}
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setIsMenuOpen(false)}
+                className={className}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {menuContent}
               </Link>
             );
           })}

@@ -31,7 +31,7 @@ export default async function PesertaDashboardPage() {
 
   if (profileError || !profile) redirect("/");
   if (profile.account_status !== "active") redirect("/");
-  if (profile.must_change_password) redirect("/change-password");
+  if (profile.must_change_password) redirect("/dashboard/peserta/password");
 
   if (profile.role !== "PESERTA") {
     redirect(profile.role === "PIC" ? "/dashboard/pic" : "/");

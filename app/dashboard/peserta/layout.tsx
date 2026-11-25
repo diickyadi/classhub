@@ -18,17 +18,13 @@ export default async function PesertaLayout({
 
   const { data: profile, error } = await supabase
     .from("profiles")
-    .select("role, account_status, must_change_password")
+    .select("role, account_status")
     .eq("id", user.id)
     .maybeSingle();
 
   if (error || !profile) redirect("/");
 
   if (profile.account_status !== "active") redirect("/");
-
-  if (profile.must_change_password) {
-    redirect("/change-password");
-  }
 
   if (profile.role !== "PESERTA") {
     redirect(profile.role === "PIC" ? "/dashboard/pic" : "/");

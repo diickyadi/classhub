@@ -31,7 +31,44 @@ export async function updateSession(request: NextRequest) {
     }
   );
 
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const pathname = request.nextUrl.pathname;
+  const isDashboardRoot = pathname === "/dashboard";
+  const isPesertaRoute =
+    pathname === "/dashboard/peserta" ||
+    pathname.startsWith("/dashboard/peserta/");
+
+  if (user && (isDashboardRoot || isPesertaRoute)) {
+    const { data: profile, error } = await supabase
+      .from("profiles")
+      .select("role, account_status, must_change_password")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (isPesertaRoute && (error || !profile)) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    if (
+      profile?.role === "PESERTA" &&
+      profile.account_status === "active" &&
+      profile.must_change_password &&
+      pathname !== "/dashboard/peserta/password"
+    ) {
+      const redirectResponse = NextResponse.redirect(
+        new URL("/dashboard/peserta/password", request.url)
+      );
+
+      supabaseResponse.cookies.getAll().forEach((cookie) => {
+        redirectResponse.cookies.set(cookie);
+      });
+
+      return redirectResponse;
+    }
+  }
 
   return supabaseResponse;
 }
